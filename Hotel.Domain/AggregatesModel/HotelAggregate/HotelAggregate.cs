@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace Hotel.Domain.AggregatesModel.HotelAggregate
 {
-    public class HotelAggregate : Entity, IAggregateRoot
+    public class HotelAggregate : Entity<int>, IAggregateRoot
     {
         public string Name { get; private set; }
 

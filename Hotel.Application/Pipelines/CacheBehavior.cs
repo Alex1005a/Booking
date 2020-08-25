@@ -32,7 +32,11 @@ namespace Hotel.Application.Pipelines
 
             // If we don't, execute the rest of the pipeline, and add the result to the cache
             var response = await next();
-            await _cache.SetStringAsync(cacheKey,  JsonConvert.SerializeObject(response));
+
+            if(response != null)
+            {
+                await _cache.SetStringAsync(cacheKey, JsonConvert.SerializeObject(response));
+            }           
 
             return response;
         }

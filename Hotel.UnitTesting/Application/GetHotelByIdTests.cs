@@ -55,7 +55,7 @@ namespace Hotel.UnitTesting.Application
                 "desc",
                 "+020 111 94546 333",
                 new Address(1, "street", "city", "state", "country"),
-                new HotelOwner(Guid.Empty, "name", "+020 111 94546 333")
+                new HotelOwner(Guid.NewGuid(), "name", "+020 111 94546 333")
                 );
 
 
@@ -75,7 +75,7 @@ namespace Hotel.UnitTesting.Application
             var cacheString = await cache.GetStringAsync(fakeCmd.CacheKey);
             var cacheValue = JsonConvert.DeserializeObject<HotelAggregate>(cacheString);
             //Assert
-            Assert.True(res == cacheValue);
+            Assert.True(res.Id == cacheValue.Id);
         }
     }
 }

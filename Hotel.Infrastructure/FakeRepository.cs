@@ -2,6 +2,8 @@
 using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,40 +11,39 @@ namespace Hotel.Infrastructure
 {
     public class FakeRepository : IHotelRepository
     {
+
+        private List<HotelAggregate> data = new List<HotelAggregate>();
+        int primaryKey = 1;
+
         public IUnitOfWork UnitOfWork => throw new NotImplementedException();
 
         public int Add(HotelAggregate hotel)
         {
-            throw new NotImplementedException();
+            data.Add(SetId(hotel, primaryKey));
+
+            primaryKey += 1;
+
+            return primaryKey - 1;
         }
 
         public async Task<HotelAggregate> GetAsync(int hotelId)
         {
-            if (hotelId == 1)
-            {
-                return new HotelAggregate(
-                "Hotel",
-                "desc",
-                "+020 111 94546 333",
-                new Address(1, "street", "city", "state", "country"),
-                new HotelOwner(Guid.NewGuid(), "name", "+020 111 94546 333")
-                );
-            }
-            else
-            {
-                return new HotelAggregate(
-                "cc",
-                "zzz",
-                "+020 111 94546 333",
-                new Address(1, "csd", "vre", "gbh", "jum"),
-                new HotelOwner(Guid.NewGuid(), "yum", "+020 111 94546 333")
-                );
-            }
+            var findResult = await Task.Run(() => data.FirstOrDefault(v => v.Id == hotelId));
+            return findResult;
         }
 
         public void Update(HotelAggregate hotel)
         {
-            throw new NotImplementedException();
+            var findResult = data.FirstOrDefault(v => v.Id == hotel.Id);
+            data.Remove(findResult);
+            data.Add(hotel);
+        }
+
+        public HotelAggregate SetId(HotelAggregate hotel, int id)
+        {
+            PropertyInfo propertyInfo = hotel.GetType().GetProperty("Id");
+            propertyInfo.SetValue(hotel, Convert.ChangeType(id, propertyInfo.PropertyType), null);
+            return hotel;
         }
     }
 }

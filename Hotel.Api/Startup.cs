@@ -27,7 +27,7 @@ namespace Hotel.Api
                 //option.InstanceName = "master";
             });
 
-            services.AddTransient<IHotelRepository, FakeRepository>();
+            services.AddSingleton<IHotelRepository, FakeRepository>();
 
             services.AddApplication();
 

@@ -10,14 +10,12 @@ namespace Hotel.Infrastructure
 {
     static class MediatorExtension
     {
-        public static async Task FixDomainEventsAsync(this IMediator mediator, List<Entity> domainEntities)
+        public static async Task FixDomainEventsAsync<T>(this IMediator mediator, Entity<T> domainEntity)
+            where T : IComparable, IConvertible, IEquatable<T>
         {
-            var domainEvents = domainEntities
-                .SelectMany(x => x.DomainEvents)
-                .ToList();
+            var domainEvents = domainEntity.DomainEvents;
 
-            domainEntities.ToList()
-                .ForEach(entity => entity.ClearDomainEvents());
+            domainEntity.ClearDomainEvents();
 
             foreach (var domainEvent in domainEvents)
                 await mediator.Publish(domainEvent);
