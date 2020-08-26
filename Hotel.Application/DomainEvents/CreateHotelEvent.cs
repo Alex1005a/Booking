@@ -9,6 +9,6 @@ namespace Hotel.Application.DomainEvents
     public class CreateHotelEvent : INotification 
     {
         public CreateHotel CreateHotel { get; set; }
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }

@@ -13,20 +13,19 @@ namespace Hotel.Infrastructure
     {
 
         private readonly List<HotelAggregate> data = new List<HotelAggregate>();
-        int primaryKey = 1;
 
-        public IUnitOfWork UnitOfWork => throw new NotImplementedException();
 
-        public int Add(HotelAggregate hotel)
+        public IUnitOfWork UnitOfWork => new FakeUnitOfWork();
+
+        public string Add(HotelAggregate hotel)
         {
-            data.Add(SetId(hotel, primaryKey));
+            string id = Guid.NewGuid().ToString();
+            data.Add(SetId(hotel, id));
 
-            primaryKey += 1;
-
-            return primaryKey - 1;
+            return id;
         }
 
-        public async Task<HotelAggregate> GetAsync(int hotelId)
+        public async Task<HotelAggregate> GetAsync(string hotelId)
         {
             var findResult = await Task.Run(() => data.FirstOrDefault(v => v.Id == hotelId));
             return findResult;
@@ -39,7 +38,7 @@ namespace Hotel.Infrastructure
             data.Add(hotel);
         }
 
-        public HotelAggregate SetId(HotelAggregate hotel, int id)
+        public HotelAggregate SetId(HotelAggregate hotel, string id)
         {
             PropertyInfo propertyInfo = hotel.GetType().GetProperty("Id");
             propertyInfo.SetValue(hotel, Convert.ChangeType(id, propertyInfo.PropertyType), null);

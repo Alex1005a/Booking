@@ -8,12 +8,12 @@ using System.Text.RegularExpressions;
 
 namespace Hotel.Domain.AggregatesModel.HotelAggregate
 {
-    public class HotelAggregate : Entity<int>, IAggregateRoot
+    public class HotelAggregate : Entity<string>, IAggregateRoot
     {
         public string Name { get; private set; }
 
         public string Description { get; private set; }
-        [RegularExpression(@"\+[0-9]{3}\s+[0-9]{3}\s+[0-9]{5}\s+[0-9]{3}", ErrorMessage = "Not correct a phone number")]
+        [RegularExpression(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$", ErrorMessage = "Not correct a phone number")]
         public string PhoneNumber { get; private set; }
 
         public Address Address { get; private set; }
@@ -26,7 +26,7 @@ namespace Hotel.Domain.AggregatesModel.HotelAggregate
             Name = name;
             Description = description;
 
-            Regex phoneNumpattern = new Regex(@"\+[0-9]{3}\s+[0-9]{3}\s+[0-9]{5}\s+[0-9]{3}");
+            Regex phoneNumpattern = new Regex(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$");
             if (!phoneNumpattern.IsMatch(phoneNumber))
             {
                 throw new HotelDomainException($"{phoneNumber} is not a phone number");
@@ -34,6 +34,14 @@ namespace Hotel.Domain.AggregatesModel.HotelAggregate
             PhoneNumber = phoneNumber;
             Address = address;
             HotelOwner = hotelOwner;
+        }
+
+        public void UpdateOwner(HotelOwner hotelOwner)
+        {
+            if(HotelOwner.Id == hotelOwner.Id)
+            {
+                HotelOwner = hotelOwner;
+            }
         }
     }
 }

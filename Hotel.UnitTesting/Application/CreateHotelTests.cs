@@ -20,12 +20,12 @@ namespace Hotel.UnitTesting.Application
         [Fact]
         public Task Test_fluent_validator()
         {
-            IPipelineBehavior<CreateHotel, int> pipeline = new ValidationPipe<CreateHotel, int>(new List<IValidator<CreateHotel>> { new CreateHotelValidator() });
+            IPipelineBehavior<CreateHotel, string> pipeline = new ValidationPipe<CreateHotel, string>(new List<IValidator<CreateHotel>> { new CreateHotelValidator() });
 
             var fakeCmd = new CreateHotel { Name = "ww"};
             var cltToken = new System.Threading.CancellationToken();
             //Act
-            var del = new RequestHandlerDelegate<int>(() => Task.FromResult(1));
+            var del = new RequestHandlerDelegate<string>(() => Task.FromResult(Guid.Empty.ToString()));
 
             Assert.ThrowsAsync<ValidationException>(async () => await pipeline.Handle(fakeCmd, cltToken, del));
 
@@ -43,7 +43,7 @@ namespace Hotel.UnitTesting.Application
             var hotelEvent = new CreateHotelEvent
             {
                 CreateHotel = request,
-                Id = 1
+                Id = Guid.Empty.ToString()
             };
 
             harness.Start().Wait();

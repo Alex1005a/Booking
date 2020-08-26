@@ -9,9 +9,9 @@ namespace Hotel.Application.UseCases.Queries.GetHotelById
         public string CacheKey => $"Hotel-{Id}";
 
 
-        public int Id { get; set; }        
+        public string Id { get; set; }        
 
-        public GetHotelById(int id)
+        public GetHotelById(string id)
         {
             Id = id;
         }

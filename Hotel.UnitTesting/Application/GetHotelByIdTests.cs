@@ -23,7 +23,7 @@ namespace Hotel.UnitTesting.Application
         [Fact]
         public async Task Handle_not_return_null()
         {           
-            int id = 1;
+            string id = Guid.NewGuid().ToString();
             var fakeCmd = new GetHotelById(id);
             HotelAggregate hotel = new HotelAggregate(
                 "Hotel",
@@ -47,7 +47,7 @@ namespace Hotel.UnitTesting.Application
         [Fact]
         public async Task Handle_result_equal_cache()
         {
-            int id = 1;
+            string id = Guid.NewGuid().ToString();
             var fakeCmd = new GetHotelById(id);
 
             HotelAggregate hotel = new HotelAggregate(

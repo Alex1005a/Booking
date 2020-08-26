@@ -8,10 +8,10 @@ namespace Hotel.Domain.AggregatesModel.HotelAggregate
 {
     public interface IHotelRepository : IRepository<HotelAggregate>
     {
-        int Add(HotelAggregate hotel);
+        string Add(HotelAggregate hotel);
 
         void Update(HotelAggregate hotel);
 
-        Task<HotelAggregate> GetAsync(int hotelId);
+        Task<HotelAggregate> GetAsync(string hotelId);
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Hotel.Application.UseCases.Commands.CreateHotel
 {
-    public class CreateHotelHandler : IRequestHandler<CreateHotel, int>
+    public class CreateHotelHandler : IRequestHandler<CreateHotel, string>
     {
         public readonly IHotelRepository _hotelRepository;
         public readonly IMediator _mediator;
@@ -19,7 +19,7 @@ namespace Hotel.Application.UseCases.Commands.CreateHotel
             _hotelRepository = hotelRepository;
             _mediator = mediator;
         }
-        public async Task<int> Handle(CreateHotel request, CancellationToken cancellationToken)
+        public async Task<string> Handle(CreateHotel request, CancellationToken cancellationToken)
         {
             HotelAggregate hotelAggregate = new HotelAggregate(
                 request.Name, 
@@ -28,7 +28,8 @@ namespace Hotel.Application.UseCases.Commands.CreateHotel
                 request.Address,
                 request.HotelOwner);
 
-            int id = _hotelRepository.Add(hotelAggregate);
+            string id = _hotelRepository.Add(hotelAggregate);
+            await _hotelRepository.UnitOfWork.SaveChangesAsync();
 
             await _mediator.Publish(new CreateHotelEvent
             {

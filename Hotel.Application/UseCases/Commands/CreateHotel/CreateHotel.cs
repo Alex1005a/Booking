@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Hotel.Application.UseCases.Commands.CreateHotel
 {
-    public class CreateHotel : IRequest<int>
+    public class CreateHotel : IRequest<string>
     {    
         public string Name { get; set; }
 

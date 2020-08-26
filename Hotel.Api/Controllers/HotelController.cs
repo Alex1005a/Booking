@@ -22,7 +22,7 @@ namespace Hotel.Api.Controllers
         }
 
         [HttpGet]
-        public HotelAggregate Get([FromQuery] int id)
+        public HotelAggregate Get([FromQuery] string id)
         {
             return _mediator.Send(new GetHotelById(id)).Result;
         }
