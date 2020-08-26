@@ -12,7 +12,7 @@ namespace Hotel.Infrastructure
     public class FakeRepository : IHotelRepository
     {
 
-        private List<HotelAggregate> data = new List<HotelAggregate>();
+        private readonly List<HotelAggregate> data = new List<HotelAggregate>();
         int primaryKey = 1;
 
         public IUnitOfWork UnitOfWork => throw new NotImplementedException();

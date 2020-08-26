@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Hotel.Application;
 using Hotel.Infrastructure;
 using Hotel.Domain.AggregatesModel.HotelAggregate;
+using MassTransit;
 
 namespace Hotel.Api
 {
@@ -26,6 +27,13 @@ namespace Hotel.Api
                 option.Configuration = Configuration["REDIS_URL"] ?? "127.0.0.1";
                 //option.InstanceName = "master";
             });
+
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq();
+            });
+
+            services.AddMassTransitHostedService();
 
             services.AddSingleton<IHotelRepository, FakeRepository>();
 

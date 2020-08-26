@@ -8,8 +8,8 @@ namespace Hotel.Application.UseCases.Queries.GetHotelById
     {
         public string CacheKey => $"Hotel-{Id}";
 
-        [DataMember]
-        public int Id { get; private set; }        
+
+        public int Id { get; set; }        
 
         public GetHotelById(int id)
         {

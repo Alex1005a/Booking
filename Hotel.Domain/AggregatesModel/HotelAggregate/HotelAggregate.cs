@@ -2,6 +2,7 @@
 using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -12,7 +13,7 @@ namespace Hotel.Domain.AggregatesModel.HotelAggregate
         public string Name { get; private set; }
 
         public string Description { get; private set; }
-
+        [RegularExpression(@"\+[0-9]{3}\s+[0-9]{3}\s+[0-9]{5}\s+[0-9]{3}", ErrorMessage = "Not correct a phone number")]
         public string PhoneNumber { get; private set; }
 
         public Address Address { get; private set; }

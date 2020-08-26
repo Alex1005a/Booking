@@ -1,4 +1,5 @@
-﻿using Hotel.Application.Pipelines;
+﻿using FluentValidation;
+using Hotel.Application.Pipelines;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -15,7 +16,10 @@ namespace Hotel.Application
 
             services.AddMediatR(assembly);
 
+            services.AddValidatorsFromAssembly(assembly);
+
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipe<,>));
         }
     }
 
