@@ -1,6 +1,12 @@
-﻿using Hotel.Application.UseCases.Commands.UpdateHotelOwner;
+﻿using Hotel.Application.Pipelines;
+using Hotel.Application.UseCases.Commands.UpdateHotelOwner;
 using Hotel.Domain.AggregatesModel.HotelAggregate;
 using Hotel.Infrastructure;
+using MediatR;
+using MediatR.Pipeline;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -40,6 +46,28 @@ namespace Hotel.UnitTesting.Application
             var result = await repository.GetAsync(hotelId);
             //Assert
             Assert.True(newName == result.HotelOwner.Name);
+        }
+
+        [Fact]
+        public async Task Test_cache_remove()
+        {
+            string hotelId = Guid.Empty.ToString();
+
+            var opts = Options.Create(new MemoryDistributedCacheOptions());
+            IDistributedCache cache = new MemoryDistributedCache(opts);
+
+            IRequestPostProcessor<UpdateHotelOwner, Unit> removeCacheBehavior = new RemoveCacheBehavior<UpdateHotelOwner, Unit>(cache);
+
+            UpdateHotelOwner request = new UpdateHotelOwner(hotelId, Guid.Empty, "eman", "+020 111 94546 333");
+
+            var cltToken = new System.Threading.CancellationToken();
+
+            //Act
+            await cache.SetStringAsync(request.CacheKey, "value");
+
+            await removeCacheBehavior.Process(request, Unit.Value, cltToken);
+            //Assert
+            Assert.Null(cache.Get(request.CacheKey));
         }
     }
 }
