@@ -50,5 +50,9 @@ namespace Hotel.Domain.AggregatesModel.HotelAggregate
                 HotelOwner = hotelOwner;
             }
         }
+        public void SetStatus(bool approved)
+        {
+            Approved = approved;
+        }
     }
 }

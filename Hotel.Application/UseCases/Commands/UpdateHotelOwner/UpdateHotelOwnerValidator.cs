@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hotel.Application.UseCases.Commands.UpdateHotelOwner
 {
-    class UpdateHotelOwnerValidator : AbstractValidator<UpdateHotelOwner>
+    public class UpdateHotelOwnerValidator : AbstractValidator<UpdateHotelOwner>
     {
         public UpdateHotelOwnerValidator()
         {
