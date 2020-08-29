@@ -16,10 +16,15 @@ namespace Hotel.Domain.AggregatesModel.HotelAggregate
         [RegularExpression(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$", ErrorMessage = "Not correct a phone number")]
         public string PhoneNumber { get; private set; }
 
+        public bool? Approved { get; private set; }
+
+        public DateTime CreatedTime { get; private set; }
+
         public Address Address { get; private set; }
 
         public HotelOwner HotelOwner { get; private set; }
 
+        private HotelAggregate() { }
 
         public HotelAggregate(string name, string description, string phoneNumber, Address address, HotelOwner hotelOwner) 
         {
@@ -34,6 +39,8 @@ namespace Hotel.Domain.AggregatesModel.HotelAggregate
             PhoneNumber = phoneNumber;
             Address = address;
             HotelOwner = hotelOwner;
+
+            CreatedTime = DateTime.Now;
         }
 
         public void UpdateOwner(HotelOwner hotelOwner)

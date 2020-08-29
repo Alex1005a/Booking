@@ -35,7 +35,10 @@ namespace Hotel.Application.Pipelines
 
             if(response != null)
             {
-                await _cache.SetStringAsync(cacheKey, JsonConvert.SerializeObject(response));
+                await _cache.SetStringAsync(cacheKey, JsonConvert.SerializeObject(response), new DistributedCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1)
+                });
             }           
 
             return response;

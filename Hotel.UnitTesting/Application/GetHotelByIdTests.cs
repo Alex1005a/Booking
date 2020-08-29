@@ -1,18 +1,13 @@
 ﻿using Hotel.Application.Pipelines;
 using Hotel.Application.UseCases.Queries.GetHotelById;
 using Hotel.Domain.AggregatesModel.HotelAggregate;
-using Hotel.Infrastructure;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Moq;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -75,7 +70,7 @@ namespace Hotel.UnitTesting.Application
             var cacheString = await cache.GetStringAsync(fakeCmd.CacheKey);
             var cacheValue = JsonConvert.DeserializeObject<HotelAggregate>(cacheString);
             //Assert
-            Assert.True(res.Id == cacheValue.Id);
+            Assert.True(res.Name == cacheValue.Name);
         }
     }
 }
