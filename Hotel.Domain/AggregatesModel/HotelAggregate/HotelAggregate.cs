@@ -18,6 +18,8 @@ namespace Hotel.Domain.AggregatesModel.HotelAggregate
 
         public bool? Approved { get; private set; }
 
+        public string[] Tags { get; private set; }
+
         public DateTime CreatedTime { get; private set; }
 
         public Address Address { get; private set; }

@@ -38,6 +38,7 @@ namespace Hotel.Api
             services.AddSingleton<IHotelRepository, FakeRepository>();
 
             services.AddApplication();
+            services.AddInfrastructure();
 
             services.AddControllers();
         }

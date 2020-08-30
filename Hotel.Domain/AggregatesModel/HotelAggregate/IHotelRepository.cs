@@ -8,7 +8,7 @@ namespace Hotel.Domain.AggregatesModel.HotelAggregate
 {
     public interface IHotelRepository : IRepository<HotelAggregate>
     {
-        string Add(HotelAggregate hotel);
+        HotelAggregate Add(HotelAggregate hotel);
 
         void Update(HotelAggregate hotel);
 

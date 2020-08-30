@@ -11,10 +11,12 @@ namespace Hotel.Application.UseCases.Commands.UpdateHotelOwner
     public class UpdateHotelOwnerHandler : IRequestHandler<UpdateHotelOwner>
     {
         public IHotelRepository _hotelRepository;
+        private readonly ISearchPort _searchPort;
 
-        public UpdateHotelOwnerHandler(IHotelRepository hotelRepository)
+        public UpdateHotelOwnerHandler(IHotelRepository hotelRepository, ISearchPort searchPort)
         {
             _hotelRepository = hotelRepository;
+            _searchPort = searchPort;
         }
 
         public async Task<Unit> Handle(UpdateHotelOwner request, CancellationToken cancellationToken)
@@ -26,6 +28,8 @@ namespace Hotel.Application.UseCases.Commands.UpdateHotelOwner
             _hotelRepository.Update(hotel);
 
             await _hotelRepository.UnitOfWork.SaveChangesAsync();
+
+            _searchPort.Index(hotel);
 
             return Unit.Value;
         }

@@ -31,15 +31,15 @@ namespace Hotel.UnitTesting.Application
                 new HotelOwner(ownerId, "name", "+020 111 94546 333")
                 );
 
-            string hotelId = repository.Add(hotel);
+            var hotel1 = repository.Add(hotel);
 
             //Act
-            UpdateHotelStatus update = new UpdateHotelStatus(hotelId, approved);
+            UpdateHotelStatus update = new UpdateHotelStatus(hotel1.Id, approved);
             UpdateHotelStatusHandler handler = new UpdateHotelStatusHandler(repository, mediator.Object);
 
             await handler.Handle(update, cltToken);
 
-            var result = await repository.GetAsync(hotelId);
+            var result = await repository.GetAsync(hotel1.Id);
             //Assert
             Assert.True(result.Approved == approved);
         }

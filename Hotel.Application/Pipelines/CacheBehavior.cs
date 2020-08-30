@@ -44,4 +44,9 @@ namespace Hotel.Application.Pipelines
             return response;
         }
     }
+
+    public interface IProvideCacheKey
+    {
+        string CacheKey { get; }
+    }
 }

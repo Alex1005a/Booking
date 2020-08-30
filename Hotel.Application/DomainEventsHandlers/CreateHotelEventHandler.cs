@@ -12,14 +12,18 @@ namespace Hotel.Application.DomainEventsHandlers
     public class CreateHotelEventHandler : INotificationHandler<CreateHotelEvent>
     {
         private readonly IPublishEndpoint _publishEndpoint;
+        private readonly ISearchPort _searchPort;
 
-        public CreateHotelEventHandler(IPublishEndpoint publishEndpoint)
+        public CreateHotelEventHandler(IPublishEndpoint publishEndpoint, ISearchPort searchPort)
         {
             _publishEndpoint = publishEndpoint;
+            _searchPort = searchPort;
         }
 
         public Task Handle(CreateHotelEvent notification, CancellationToken cancellationToken)
         {
+            _searchPort.Index(notification.Hotel);
+
             _publishEndpoint.Publish(notification);
 
             return Task.CompletedTask;

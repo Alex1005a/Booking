@@ -18,11 +18,11 @@ namespace Hotel.Infrastructure
                                                                            .Options);
         public IUnitOfWork UnitOfWork => context;
 
-        public string Add(HotelAggregate hotel)
+        public HotelAggregate Add(HotelAggregate hotel)
         {
             context.Hotels.Add(hotel);
             context.SaveChanges();
-            return hotel.Id;          
+            return hotel;          
         }
 
         public async Task<HotelAggregate> GetAsync(string hotelId)

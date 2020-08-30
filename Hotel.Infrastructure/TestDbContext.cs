@@ -25,6 +25,10 @@ namespace Hotel.Infrastructure
             modelBuilder.Entity<HotelAggregate>()
                 .OwnsOne(p => p.Address);
             modelBuilder.Entity<HotelAggregate>().Ignore(t => t.DomainEvents);
+            modelBuilder.Entity<HotelAggregate>().Property(p => p.Tags)
+            .HasConversion(
+                v => string.Join("'", v),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
 
             base.OnModelCreating(modelBuilder);
         }

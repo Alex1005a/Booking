@@ -7,9 +7,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.7" />
+    <PackageReference Include="NEST" Version="7.9.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Hotel.Application\Hotel.Application.csproj" />
     <ProjectReference Include="..\Hotel.Domain\Hotel.Domain.csproj" />
     <ProjectReference Include="..\SeedWork\SeedWork.csproj" />
   </ItemGroup>

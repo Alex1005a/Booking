@@ -1,4 +1,5 @@
-﻿using Hotel.Domain.AggregatesModel.HotelAggregate;
+﻿using Hotel.Application.Pipelines;
+using Hotel.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
 using System.Runtime.Serialization;
 

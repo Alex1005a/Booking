@@ -25,4 +25,9 @@ namespace Hotel.Application.Pipelines
             await _cache.RemoveAsync(cacheKey);
         }
     }
+
+    public interface ICacheRemove
+    {
+        string CacheKey { get; }
+    }
 }

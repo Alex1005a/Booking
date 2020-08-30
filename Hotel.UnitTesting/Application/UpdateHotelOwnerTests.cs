@@ -1,4 +1,5 @@
-﻿using Hotel.Application.Pipelines;
+﻿using Hotel.Application;
+using Hotel.Application.Pipelines;
 using Hotel.Application.UseCases.Commands.UpdateHotelOwner;
 using Hotel.Domain.AggregatesModel.HotelAggregate;
 using Hotel.Infrastructure;
@@ -7,6 +8,7 @@ using MediatR.Pipeline;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,6 +26,7 @@ namespace Hotel.UnitTesting.Application
             string newName = "eman";
 
             IHotelRepository repository = new FakeRepository();
+            var Mock = new Mock<ISearchPort>();
 
             var cltToken = new System.Threading.CancellationToken();
 
@@ -35,15 +38,15 @@ namespace Hotel.UnitTesting.Application
                 new HotelOwner(ownerId, "name", "+020 111 94546 333")
                 );
 
-            string hotelId = repository.Add(hotel);
+            var hotel1 = repository.Add(hotel);
 
             //Act
-            UpdateHotelOwner update = new UpdateHotelOwner(hotelId, ownerId, "eman", "+020 111 94546 333");
-            UpdateHotelOwnerHandler handler = new UpdateHotelOwnerHandler(repository);
+            UpdateHotelOwner update = new UpdateHotelOwner(hotel1.Id, ownerId, "eman", "+020 111 94546 333");
+            UpdateHotelOwnerHandler handler = new UpdateHotelOwnerHandler(repository, Mock.Object);
             
             await handler.Handle(update, cltToken);
 
-            var result = await repository.GetAsync(hotelId);
+            var result = await repository.GetAsync(hotel1.Id);
             //Assert
             Assert.True(newName == result.HotelOwner.Name);
         }

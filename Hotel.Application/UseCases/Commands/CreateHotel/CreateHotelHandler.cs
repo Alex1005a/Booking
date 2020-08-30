@@ -28,16 +28,15 @@ namespace Hotel.Application.UseCases.Commands.CreateHotel
                 request.Address,
                 request.HotelOwner);
 
-            string id = _hotelRepository.Add(hotelAggregate);
+            var hotel = _hotelRepository.Add(hotelAggregate);
             await _hotelRepository.UnitOfWork.SaveChangesAsync();
 
             await _mediator.Publish(new CreateHotelEvent
             {
-                CreateHotel = request,
-                Id = id
+                Hotel = hotel
             });
 
-            return id;
+            return hotel.Id;
         }
     }
 }

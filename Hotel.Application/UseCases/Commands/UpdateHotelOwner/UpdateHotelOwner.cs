@@ -1,4 +1,5 @@
-﻿using Hotel.Application.UseCases.Queries.GetHotelById;
+﻿using Hotel.Application.Pipelines;
+using Hotel.Application.UseCases.Queries.GetHotelById;
 using MediatR;
 using System;
 using System.Collections.Generic;
