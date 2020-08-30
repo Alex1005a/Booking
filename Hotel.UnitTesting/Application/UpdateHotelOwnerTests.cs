@@ -66,11 +66,11 @@ namespace Hotel.UnitTesting.Application
             var cltToken = new System.Threading.CancellationToken();
 
             //Act
-            await cache.SetStringAsync(request.CacheKey, "value");
+            await cache.SetStringAsync(request.CacheKeys[0], "value");
 
             await removeCacheBehavior.Process(request, Unit.Value, cltToken);
             //Assert
-            Assert.Null(cache.Get(request.CacheKey));
+            Assert.Null(cache.Get(request.CacheKeys[0]));
         }
     }
 }

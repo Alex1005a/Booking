@@ -9,7 +9,7 @@ namespace Hotel.Application.UseCases.Commands.UpdateHotelOwner
 {
     public class UpdateHotelOwner : IRequest, ICacheRemove
     {
-        public string CacheKey => new GetHotelById(HotelId).CacheKey;
+        public string[] CacheKeys => new string[] { new GetHotelById(HotelId).CacheKey };
 
         public string HotelId { get; set; }
         public Guid Id { get; set; }

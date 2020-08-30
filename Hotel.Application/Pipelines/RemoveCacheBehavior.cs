@@ -21,13 +21,15 @@ namespace Hotel.Application.Pipelines
 
         public async Task Process(TRequest request, TResponse response, CancellationToken cancellationToken)
         {
-            string cacheKey = request.CacheKey;
-            await _cache.RemoveAsync(cacheKey);
+            foreach(var key in request.CacheKeys)
+            {
+                await _cache.RemoveAsync(key);
+            }
         }
     }
 
     public interface ICacheRemove
     {
-        string CacheKey { get; }
+        string[] CacheKeys { get; }
     }
 }
