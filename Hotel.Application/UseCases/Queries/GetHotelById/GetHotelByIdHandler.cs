@@ -11,15 +11,15 @@ namespace Hotel.Application.UseCases.Queries.GetHotelById
 {
     public class GetHotelByIdHandler : IRequestHandler<GetHotelById, HotelAggregate>
     {
-        private readonly IHotelRepository _hotelRepository;
+        private readonly ISearchPort _searchPort;
 
-        public GetHotelByIdHandler(IHotelRepository hotelRepository)
+        public GetHotelByIdHandler(ISearchPort searchPort)
         {
-            _hotelRepository = hotelRepository;
+            _searchPort = searchPort;
         }
         public async Task<HotelAggregate> Handle(GetHotelById request, CancellationToken cancellationToken)
         {      
-            return await _hotelRepository.GetAsync(request.Id);
+            return await _searchPort.GetByIdAsync(request.Id);
         }
     }
 }

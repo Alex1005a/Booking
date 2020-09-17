@@ -14,11 +14,13 @@ namespace Hotel.Application.UseCases.Commands.UpdateHotelStatus
     {
         public IHotelRepository _hotelRepository;
         public IMediator _mediator;
+        private readonly ISearchPort _searchPort;
 
-        public UpdateHotelStatusHandler(IHotelRepository hotelRepository, IMediator mediator)
+        public UpdateHotelStatusHandler(IHotelRepository hotelRepository, IMediator mediator, ISearchPort searchPort)
         {
             _hotelRepository = hotelRepository;
             _mediator = mediator;
+            _searchPort = searchPort;
         }
 
         public async Task<Unit> Handle(UpdateHotelStatus request, CancellationToken cancellationToken)
@@ -28,6 +30,8 @@ namespace Hotel.Application.UseCases.Commands.UpdateHotelStatus
             hotel.SetStatus(request.Status);
             hotel.AddDomainEvent(new UpdateHotelStatusEvent(hotel, request.Status));
             await _hotelRepository.UnitOfWork.SaveChangesAsync();
+
+            _searchPort.Index(hotel);
 
             await _mediator.FixDomainEventsAsync(hotel);
 

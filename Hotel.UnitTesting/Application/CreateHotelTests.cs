@@ -40,8 +40,6 @@ namespace Hotel.UnitTesting.Application
         {
             var harness = new InMemoryTestHarness();
 
-            var Mock = new Mock<ISearchPort>();
-
             HotelAggregate hotel = new HotelAggregate(
                "Hotel",
                "desc",
@@ -62,7 +60,7 @@ namespace Hotel.UnitTesting.Application
             var cltToken = new System.Threading.CancellationToken();
             //Act
             
-            CreateHotelEventHandler eventHandler = new CreateHotelEventHandler(bus, Mock.Object);
+            CreateHotelEventHandler eventHandler = new CreateHotelEventHandler(bus);
 
             eventHandler.Handle(hotelEvent, cltToken).Wait();
 

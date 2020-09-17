@@ -12,18 +12,14 @@ namespace Hotel.Application.DomainEventsHandlers
     public class UpdateHotelStatusEventHandler : INotificationHandler<UpdateHotelStatusEvent>
     {
         private readonly IPublishEndpoint _publishEndpoint;
-        private readonly ISearchPort _searchPort;
 
-        public UpdateHotelStatusEventHandler(IPublishEndpoint publishEndpoint, ISearchPort searchPort)
+        public UpdateHotelStatusEventHandler(IPublishEndpoint publishEndpoint)
         {
-            _publishEndpoint = publishEndpoint;
-            _searchPort = searchPort;
+            _publishEndpoint = publishEndpoint;           
         }
 
         public Task Handle(UpdateHotelStatusEvent notification, CancellationToken cancellationToken)
-        {
-            _searchPort.Index(notification.Hotel);
-
+        {            
             _publishEndpoint.Publish(notification);
 
             return Task.CompletedTask;

@@ -1,4 +1,5 @@
-﻿using Hotel.Application.UseCases.Commands.UpdateHotelStatus;
+﻿using Hotel.Application;
+using Hotel.Application.UseCases.Commands.UpdateHotelStatus;
 using Hotel.Domain.AggregatesModel.HotelAggregate;
 using Hotel.Infrastructure;
 using MediatR;
@@ -33,9 +34,11 @@ namespace Hotel.UnitTesting.Application
 
             var hotel1 = repository.Add(hotel);
 
+            var searchMock = new Mock<ISearchPort>();
+
             //Act
             UpdateHotelStatus update = new UpdateHotelStatus(hotel1.Id, approved);
-            UpdateHotelStatusHandler handler = new UpdateHotelStatusHandler(repository, mediator.Object);
+            UpdateHotelStatusHandler handler = new UpdateHotelStatusHandler(repository, mediator.Object, searchMock.Object);
 
             await handler.Handle(update, cltToken);
 
