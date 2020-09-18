@@ -1,10 +1,6 @@
 ﻿using Hotel.Application.DomainEvents;
 using Hotel.Domain.AggregatesModel.HotelAggregate;
-using Hotel.Infrastructure;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
