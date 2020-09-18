@@ -1,7 +1,7 @@
-﻿using Hotel.Application;
-using Hotel.Application.UseCases.Commands.UpdateHotelStatus;
-using Hotel.Domain.AggregatesModel.HotelAggregate;
-using Hotel.Infrastructure;
+﻿using HotelSevice.Application;
+using HotelSevice.Application.UseCases.Commands.UpdateHotelStatus;
+using HotelSevice.Domain.AggregatesModel.HotelAggregate;
+using HotelSevice.Infrastructure;
 using MediatR;
 using Moq;
 using System;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Hotel.UnitTesting.Application
+namespace HotelSevice.UnitTesting.Application
 {
     public class UpdateHotelStatusTests
     {
@@ -24,7 +24,7 @@ namespace Hotel.UnitTesting.Application
 
             var cltToken = new System.Threading.CancellationToken();
 
-            HotelAggregate hotel = new HotelAggregate(
+            Hotel hotel = new Hotel(
                 "Hotel",
                 "desc",
                 "+020 111 94546 333",

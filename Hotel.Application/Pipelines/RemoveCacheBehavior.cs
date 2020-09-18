@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Hotel.Application.Pipelines
+namespace HotelSevice.Application.Pipelines
 {
     public class RemoveCacheBehavior<TRequest, TResponse> : IRequestPostProcessor<TRequest, TResponse>
     where TRequest : ICacheRemove, IRequest<TResponse>

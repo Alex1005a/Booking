@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Hotel.Application;
-using Hotel.Infrastructure;
-using Hotel.Domain.AggregatesModel.HotelAggregate;
+using HotelSevice.Application;
+using HotelSevice.Infrastructure;
+using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MassTransit;
 
-namespace Hotel.Api
+namespace HotelSevice.Api
 {
     public class Startup
     {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Domain.AggregatesModel.HotelAggregate
+namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
 {
     [Serializable]
     public class HotelOwner : ValueObject

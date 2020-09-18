@@ -1,11 +1,11 @@
-﻿using Hotel.Application.Pipelines;
-using Hotel.Application.UseCases.Queries.GetHotelById;
+﻿using HotelSevice.Application.Pipelines;
+using HotelSevice.Application.UseCases.Queries.GetHotelById;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Application.UseCases.Commands.UpdateHotelStatus
+namespace HotelSevice.Application.UseCases.Commands.UpdateHotelStatus
 {
     public class UpdateHotelStatus : IRequest, ICacheRemove
     {

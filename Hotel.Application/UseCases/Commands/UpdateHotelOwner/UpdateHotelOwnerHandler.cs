@@ -1,4 +1,4 @@
-﻿using Hotel.Domain.AggregatesModel.HotelAggregate;
+﻿using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Hotel.Application.UseCases.Commands.UpdateHotelOwner
+namespace HotelSevice.Application.UseCases.Commands.UpdateHotelOwner
 {
     public class UpdateHotelOwnerHandler : IRequestHandler<UpdateHotelOwner>
     {

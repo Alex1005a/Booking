@@ -1,4 +1,4 @@
-﻿using Hotel.Domain.AggregatesModel.HotelAggregate;
+﻿using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
 using Microsoft.Extensions.Options;
@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Infrastructure
+namespace HotelSevice.Infrastructure
 {
     public class FakeRepository : IHotelRepository
     {
@@ -18,19 +18,19 @@ namespace Hotel.Infrastructure
                                                                            .Options);
         public IUnitOfWork UnitOfWork => context;
 
-        public HotelAggregate Add(HotelAggregate hotel)
+        public Hotel Add(Hotel hotel)
         {
             context.Hotels.Add(hotel);
             context.SaveChanges();
             return hotel;          
         }
 
-        public async Task<HotelAggregate> GetAsync(string hotelId)
+        public async Task<Hotel> GetAsync(string hotelId)
         {
             return await context.Hotels.FindAsync(hotelId);
         }
 
-        public void Update(HotelAggregate hotel)
+        public void Update(Hotel hotel)
         {            
             context.Hotels.Update(hotel);           
         }

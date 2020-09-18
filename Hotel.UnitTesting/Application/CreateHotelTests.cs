@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using Hotel.Application;
-using Hotel.Application.DomainEvents;
-using Hotel.Application.DomainEventsHandlers;
-using Hotel.Application.Pipelines;
-using Hotel.Application.UseCases.Commands.CreateHotel;
-using Hotel.Domain.AggregatesModel.HotelAggregate;
-using Hotel.Infrastructure;
+using HotelSevice.Application;
+using HotelSevice.Application.DomainEvents;
+using HotelSevice.Application.DomainEventsHandlers;
+using HotelSevice.Application.Pipelines;
+using HotelSevice.Application.UseCases.Commands.CreateHotel;
+using HotelSevice.Domain.AggregatesModel.HotelAggregate;
+using HotelSevice.Infrastructure;
 using MassTransit.Testing;
 using MediatR;
 using Moq;
@@ -16,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Hotel.UnitTesting.Application
+namespace HotelSevice.UnitTesting.Application
 {
     public class CreateHotelTests
     {
@@ -40,7 +40,7 @@ namespace Hotel.UnitTesting.Application
         {
             var harness = new InMemoryTestHarness();
 
-            HotelAggregate hotel = new HotelAggregate(
+            Hotel hotel = new Hotel(
                "Hotel",
                "desc",
                "+020 111 94546 333",

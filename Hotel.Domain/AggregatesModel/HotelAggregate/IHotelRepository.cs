@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Domain.AggregatesModel.HotelAggregate
+namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
 {
-    public interface IHotelRepository : IRepository<HotelAggregate>
+    public interface IHotelRepository : IRepository<Hotel>
     {
-        HotelAggregate Add(HotelAggregate hotel);
+        Hotel Add(Hotel hotel);
 
-        void Update(HotelAggregate hotel);
+        void Update(Hotel hotel);
 
-        Task<HotelAggregate> GetAsync(string hotelId);
+        Task<Hotel> GetAsync(string hotelId);
     }
 }

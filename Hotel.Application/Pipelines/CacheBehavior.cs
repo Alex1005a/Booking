@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Hotel.Application.Pipelines
+namespace HotelSevice.Application.Pipelines
 {
     public class CacheBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IProvideCacheKey, IRequest<TResponse>

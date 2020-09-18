@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Application.UseCases.Commands.UpdateHotelOwner
+namespace HotelSevice.Application.UseCases.Commands.UpdateHotelOwner
 {
     public class UpdateHotelOwnerValidator : AbstractValidator<UpdateHotelOwner>
     {

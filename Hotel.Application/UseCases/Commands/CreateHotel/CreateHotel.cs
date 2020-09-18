@@ -1,10 +1,10 @@
-﻿using Hotel.Domain.AggregatesModel.HotelAggregate;
+﻿using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Application.UseCases.Commands.CreateHotel
+namespace HotelSevice.Application.UseCases.Commands.CreateHotel
 {
     public class CreateHotel : IRequest<string>
     {    

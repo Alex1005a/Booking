@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Application.UseCases.Commands.CreateHotel
+namespace HotelSevice.Application.UseCases.Commands.CreateHotel
 {
     public class CreateHotelValidator : AbstractValidator<CreateHotel>
     {

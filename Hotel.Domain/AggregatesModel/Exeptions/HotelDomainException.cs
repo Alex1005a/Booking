@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Domain.AggregatesModel.Exeptions
+namespace HotelSevice.Domain.AggregatesModel.Exeptions
 {
     public class HotelDomainException : Exception
     {

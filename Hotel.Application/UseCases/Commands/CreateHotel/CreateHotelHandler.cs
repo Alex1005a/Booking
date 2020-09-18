@@ -1,5 +1,5 @@
-﻿using Hotel.Application.DomainEvents;
-using Hotel.Domain.AggregatesModel.HotelAggregate;
+﻿using HotelSevice.Application.DomainEvents;
+using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Hotel.Application.UseCases.Commands.CreateHotel
+namespace HotelSevice.Application.UseCases.Commands.CreateHotel
 {
     public class CreateHotelHandler : IRequestHandler<CreateHotel, string>
     {
@@ -24,7 +24,7 @@ namespace Hotel.Application.UseCases.Commands.CreateHotel
 
         public async Task<string> Handle(CreateHotel request, CancellationToken cancellationToken)
         {
-            HotelAggregate hotelAggregate = new HotelAggregate(
+            Hotel hotelAggregate = new Hotel(
                 request.Name, 
                 request.Description, 
                 request.PhoneNumber, 

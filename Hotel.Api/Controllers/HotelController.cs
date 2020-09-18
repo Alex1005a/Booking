@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Hotel.Application.UseCases.Queries.GetHotelById;
-using Hotel.Domain.AggregatesModel.HotelAggregate;
+using HotelSevice.Application.UseCases.Queries.GetHotelById;
+using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hotel.Api.Controllers
+namespace HotelSevice.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,7 +22,7 @@ namespace Hotel.Api.Controllers
         }
 
         [HttpGet]
-        public HotelAggregate Get([FromQuery] string id)
+        public Hotel Get([FromQuery] string id)
         {
             return _mediator.Send(new GetHotelById(id)).Result;
         }

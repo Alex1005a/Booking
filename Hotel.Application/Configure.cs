@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Hotel.Application.Pipelines;
+using HotelSevice.Application.Pipelines;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Application
+namespace HotelSevice.Application
 {
     public static class Configure
     {

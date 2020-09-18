@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Application
+namespace HotelSevice.Application
 {
     static class MediatorExtension
     {

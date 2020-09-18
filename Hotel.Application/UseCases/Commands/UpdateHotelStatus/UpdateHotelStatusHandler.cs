@@ -1,10 +1,10 @@
-﻿using Hotel.Application.DomainEvents;
-using Hotel.Domain.AggregatesModel.HotelAggregate;
+﻿using HotelSevice.Application.DomainEvents;
+using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Hotel.Application.UseCases.Commands.UpdateHotelStatus
+namespace HotelSevice.Application.UseCases.Commands.UpdateHotelStatus
 {
     public class UpdateHotelStatusHandler : IRequestHandler<UpdateHotelStatus>
     {

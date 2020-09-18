@@ -1,14 +1,14 @@
-﻿using Hotel.Domain.AggregatesModel.HotelAggregate;
+﻿using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Application
+namespace HotelSevice.Application
 {
     public interface ISearchPort
     {
-        void Index(HotelAggregate hotel);
-        Task<HotelAggregate> GetByIdAsync(string id);
+        void Index(Hotel hotel);
+        Task<Hotel> GetByIdAsync(string id);
     }
 }

@@ -1,10 +1,10 @@
-﻿using Hotel.Application;
+﻿using HotelSevice.Application;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Infrastructure
+namespace HotelSevice.Infrastructure
 {
     public static class Configure
     {

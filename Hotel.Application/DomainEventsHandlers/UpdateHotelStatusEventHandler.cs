@@ -1,4 +1,4 @@
-﻿using Hotel.Application.DomainEvents;
+﻿using HotelSevice.Application.DomainEvents;
 using MassTransit;
 using MediatR;
 using System;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Hotel.Application.DomainEventsHandlers
+namespace HotelSevice.Application.DomainEventsHandlers
 {
     public class UpdateHotelStatusEventHandler : INotificationHandler<UpdateHotelStatusEvent>
     {

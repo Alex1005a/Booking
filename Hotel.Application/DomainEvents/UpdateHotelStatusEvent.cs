@@ -1,17 +1,17 @@
-﻿using Hotel.Domain.AggregatesModel.HotelAggregate;
+﻿using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Application.DomainEvents
+namespace HotelSevice.Application.DomainEvents
 {
     public class UpdateHotelStatusEvent : INotification
     {
-        public HotelAggregate Hotel { get; set; }
+        public Hotel Hotel { get; set; }
         public bool Status { get; set; }
 
-        public UpdateHotelStatusEvent(HotelAggregate hotel, bool status)
+        public UpdateHotelStatusEvent(Hotel hotel, bool status)
         {
             Hotel = hotel;
             Status = status;

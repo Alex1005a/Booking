@@ -1,4 +1,4 @@
-﻿using Hotel.Domain.AggregatesModel.HotelAggregate;
+﻿using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Hotel.Application.UseCases.Queries.GetHotelById
+namespace HotelSevice.Application.UseCases.Queries.GetHotelById
 {
-    public class GetHotelByIdHandler : IRequestHandler<GetHotelById, HotelAggregate>
+    public class GetHotelByIdHandler : IRequestHandler<GetHotelById, Hotel>
     {
         private readonly ISearchPort _searchPort;
 
@@ -17,7 +17,7 @@ namespace Hotel.Application.UseCases.Queries.GetHotelById
         {
             _searchPort = searchPort;
         }
-        public async Task<HotelAggregate> Handle(GetHotelById request, CancellationToken cancellationToken)
+        public async Task<Hotel> Handle(GetHotelById request, CancellationToken cancellationToken)
         {      
             return await _searchPort.GetByIdAsync(request.Id);
         }

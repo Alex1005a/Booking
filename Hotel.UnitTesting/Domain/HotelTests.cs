@@ -1,21 +1,18 @@
-﻿using Hotel.Domain.AggregatesModel.Exeptions;
-using Hotel.Domain.AggregatesModel.HotelAggregate;
+﻿using HotelSevice.Domain.AggregatesModel.Exeptions;
+using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace Hotel.UnitTesting.Domain
+namespace HotelSevice.UnitTesting.Domain
 {
-    public class HotelAggreagateTests
+    public class HotelTests
     {
         [Fact]
         public void Not_phone_number_exeption()
         {
             string fakePhoneNumber = "not PhoneNumber";
             //Assert
-            Assert.Throws<HotelDomainException>(() =>  new HotelAggregate(
+            Assert.Throws<HotelDomainException>(() =>  new Hotel(
                 "Hotel",
                 "desc",
                 fakePhoneNumber,

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 
-namespace Hotel.Application.Pipelines
+namespace HotelSevice.Application.Pipelines
 {
     public class ValidationPipe<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>

@@ -1,4 +1,4 @@
-﻿using Hotel.Domain.AggregatesModel.Exeptions;
+﻿using HotelSevice.Domain.AggregatesModel.Exeptions;
 using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
 using System;
 using System.Collections.Generic;
@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Hotel.Domain.AggregatesModel.HotelAggregate
+namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
 {
-    public class HotelAggregate : Entity<string>, IAggregateRoot
+    public class Hotel : Entity<string>, IAggregateRoot
     {
         public string Name { get; private set; }
 
@@ -26,9 +26,9 @@ namespace Hotel.Domain.AggregatesModel.HotelAggregate
 
         public HotelOwner HotelOwner { get; private set; }
 
-        private HotelAggregate() { }
+        private Hotel() { }
 
-        public HotelAggregate(string name, string description, string phoneNumber, Address address, HotelOwner hotelOwner) 
+        public Hotel(string name, string description, string phoneNumber, Address address, HotelOwner hotelOwner) 
         {
             Name = name;
             Description = description;
