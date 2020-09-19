@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>b7255344-606f-4855-b33d-0b607bb57410</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <RootNamespace>HotelSevice.Api</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
