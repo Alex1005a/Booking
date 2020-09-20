@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HotelSevice.Application.UseCases.Commands.CreateHotel;
 using HotelSevice.Application.UseCases.Queries.GetHotelById;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
@@ -25,6 +26,12 @@ namespace HotelSevice.Api.Controllers
         public Hotel Get([FromQuery] string id)
         {
             return _mediator.Send(new GetHotelById(id)).Result;
+        }
+
+        [HttpPost]
+        public string Post([FromBody] CreateHotel createHotel)
+        {
+            return _mediator.Send(createHotel).Result;
         }
     }
 }

@@ -5,8 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HotelSevice.Application;
 using HotelSevice.Infrastructure;
-using HotelSevice.Domain.AggregatesModel.HotelAggregate;
-using MassTransit;
 
 namespace HotelSevice.Api
 {
@@ -27,20 +25,19 @@ namespace HotelSevice.Api
                 option.Configuration = Configuration["REDIS_URL"] ?? "127.0.0.1";
                 //option.InstanceName = "master";
             });
-
+            /*
             services.AddMassTransit(x =>
             {
                 x.UsingRabbitMq();
             });
 
             services.AddMassTransitHostedService();
-
-            services.AddSingleton<IHotelRepository, FakeRepository>();
-
+            */
             services.AddApplication();
             services.AddInfrastructure();
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

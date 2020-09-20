@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace HotelSevice.Application.Pipelines
 {
     public class RemoveCacheBehavior<TRequest, TResponse> : IRequestPostProcessor<TRequest, TResponse>
-    where TRequest : ICacheRemove, IRequest<TResponse>
+    where TRequest : IRequest<TResponse>
     {
         private readonly IDistributedCache _cache;
 
@@ -21,7 +21,14 @@ namespace HotelSevice.Application.Pipelines
 
         public async Task Process(TRequest request, TResponse response, CancellationToken cancellationToken)
         {
-            foreach(var key in request.CacheKeys)
+            if (!(request is ICacheRemove))
+            {
+                return;
+            }
+
+            var requestCacheRemove = request as ICacheRemove;
+
+            foreach (var key in requestCacheRemove.CacheKeys)
             {
                 await _cache.RemoveAsync(key);
             }

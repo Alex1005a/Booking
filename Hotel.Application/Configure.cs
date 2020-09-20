@@ -1,11 +1,9 @@
 ﻿using FluentValidation;
 using HotelSevice.Application.Pipelines;
+using MassTransit;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HotelSevice.Application
 {
@@ -16,6 +14,13 @@ namespace HotelSevice.Application
             var assembly = typeof(Configure).Assembly;
 
             services.AddMediatR(assembly);
+
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq();
+            });
+
+            services.AddMassTransitHostedService();
 
             services.AddValidatorsFromAssembly(assembly);
 

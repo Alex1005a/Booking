@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace HotelSevice.Application.Pipelines
 {
     public class CacheBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : IProvideCacheKey, IRequest<TResponse>
+    where TRequest : IRequest<TResponse>
     {
         private readonly IDistributedCache _cache;
 
@@ -21,9 +21,14 @@ namespace HotelSevice.Application.Pipelines
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            // Check in cache if we already have what we're looking for
-            
-            var cacheKey = request.CacheKey;
+            if(!(request is IProvideCacheKey))
+            {
+                return await next();
+            }
+
+            var requestProvideKey = request as IProvideCacheKey;
+
+            var cacheKey = requestProvideKey.CacheKey;
             var cacheValue = await _cache.GetStringAsync(cacheKey);
             if (cacheValue != null)
             {               
