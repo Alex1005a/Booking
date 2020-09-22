@@ -23,9 +23,12 @@ namespace HotelSevice.Infrastructure
                     .SetIdGenerator(StringObjectIdGenerator.Instance)
                     .SetSerializer(new StringSerializer(BsonType.ObjectId));
             });
-            BsonClassMap.RegisterClassMap<Hotel>(cm =>
+            
+            BsonClassMap.RegisterClassMap<HotelOwner>(cm =>
             {
-                cm.AutoMap();                
+                cm.AutoMap();
+                cm.MapMember(c => c.Id)
+                    .SetSerializer(new GuidSerializer(BsonType.String));
             });
 
             services.AddTransient<IHotelRepository, HotelRepository>();

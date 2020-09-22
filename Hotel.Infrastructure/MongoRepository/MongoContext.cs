@@ -26,11 +26,9 @@ namespace HotelSevice.Infrastructure.MongoRepository
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            var commandTasks = _commands.Select(c => c());            
-
             if (MongoClient.Cluster.Description.Type == MongoDB.Driver.Core.Clusters.ClusterType.Standalone)
             {
-                await Task.WhenAll(commandTasks);
+                await Task.WhenAll(_commands.Select(c => c()));
             }
 
             else
@@ -39,16 +37,17 @@ namespace HotelSevice.Infrastructure.MongoRepository
                 {
                     Session.StartTransaction();
 
-                    await Task.WhenAll(commandTasks);
+                    await Task.WhenAll(_commands.Select(c => c()));
 
                     await Session.CommitTransactionAsync();
                 }
 
             }
 
+            int count = _commands.Count();
             _commands.Clear();
 
-            return commandTasks.Count();
+            return count;
         }
 
         public IMongoCollection<T> GetCollection<T>(string name)
