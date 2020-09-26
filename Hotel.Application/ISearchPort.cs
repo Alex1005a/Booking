@@ -1,7 +1,5 @@
 ﻿using HotelSevice.Domain.AggregatesModel.HotelAggregate;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HotelSevice.Application
@@ -10,5 +8,6 @@ namespace HotelSevice.Application
     {
         void Index(Hotel hotel);
         Task<Hotel> GetByIdAsync(string id);
+        Task<IReadOnlyCollection<Hotel>> SearchHotelByName(string name, int page);
     }
 }

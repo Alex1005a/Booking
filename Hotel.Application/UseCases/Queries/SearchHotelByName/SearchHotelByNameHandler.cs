@@ -1,0 +1,25 @@
+﻿using HotelSevice.Domain.AggregatesModel.HotelAggregate;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace HotelSevice.Application.UseCases.Queries.SearchHotelByName
+{
+    public class SearchHotelByNameHandler : IRequestHandler<SearchHotelByName, IReadOnlyCollection<Hotel>>
+    {
+        private readonly ISearchPort _searchPort;
+
+        public SearchHotelByNameHandler(ISearchPort searchPort)
+        {
+            _searchPort = searchPort;
+        }
+
+        public async Task<IReadOnlyCollection<Hotel>> Handle(SearchHotelByName request, CancellationToken cancellationToken)
+        {
+            return await _searchPort.SearchHotelByName(request.Name, request.Page);
+        }
+    }
+}

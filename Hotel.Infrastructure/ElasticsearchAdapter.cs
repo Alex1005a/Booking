@@ -10,20 +10,42 @@ namespace HotelSevice.Infrastructure
 {
     public class ElasticsearchAdapter : ISearchPort
     {
-        readonly ConnectionSettings settings = new ConnectionSettings(new Uri("http://localhost:9200"))
-            .DefaultIndex("hotels");
-      
+        //readonly ConnectionSettings settings = new ConnectionSettings(new Uri("http://localhost:9200"))
+        //    .DefaultIndex("hotels");
+
+        readonly ElasticClient client = new ElasticClient(new ConnectionSettings(new Uri("http://localhost:9200"))
+                                                     .DefaultIndex("hotels"));
+
         public void Index(Hotel hotel)
         {
-            var client = new ElasticClient(settings);
             client.IndexDocument(hotel);
         }
 
         public async Task<Hotel> GetByIdAsync(string id)
         {
-            var client = new ElasticClient(settings);
             var response = await client.GetAsync<Hotel>(id);
             return response.Source;
+        }
+
+        public async Task<IReadOnlyCollection<Hotel>> SearchHotelByName(string name, int page)
+        {
+            int pageSize = 3;
+            int levenshteinDistance = 6;
+
+            Func<QueryContainerDescriptor<Hotel>, QueryContainer> searchQuery =
+                q => q.Match(m => m
+                               .Field(f => f.Name)
+                               .Query(name)
+                                .Fuzziness(Fuzziness.EditDistance(levenshteinDistance))
+                             );
+           
+            var result = await client.SearchAsync<Hotel>(descriptor => descriptor
+                                .From(page)
+                                .Size(pageSize)
+                                .Query(searchQuery)
+                           );
+
+            return result.Documents;
         }
     }
 }

@@ -35,7 +35,6 @@ namespace HotelSevice.Application.Pipelines
                 return JsonConvert.DeserializeObject<TResponse>(cacheValue);
             }
 
-            // If we don't, execute the rest of the pipeline, and add the result to the cache
             var response = await next();
 
             if(response != null)

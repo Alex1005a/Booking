@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotelSevice.Application.UseCases.Commands.CreateHotel;
 using HotelSevice.Application.UseCases.Queries.GetHotelById;
+using HotelSevice.Application.UseCases.Queries.SearchHotelByName;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -23,15 +24,21 @@ namespace HotelSevice.Api.Controllers
         }
 
         [HttpGet]
-        public Hotel Get([FromQuery] string id)
+        public async Task<Hotel> Get([FromQuery] string id)
         {
-            return _mediator.Send(new GetHotelById(id)).Result;
+            return await _mediator.Send(new GetHotelById(id));
+        }
+
+        [HttpGet("searchByName")]
+        public async Task<IReadOnlyCollection<Hotel>> Get([FromQuery] string name, [FromQuery] int page = 0)
+        {
+            return await _mediator.Send(new SearchHotelByName(name, page));
         }
 
         [HttpPost]
-        public string Post([FromBody] CreateHotel createHotel)
+        public async Task<string> Post([FromBody] CreateHotel createHotel)
         {
-            return _mediator.Send(createHotel).Result;
+            return await _mediator.Send(createHotel);
         }
     }
 }
