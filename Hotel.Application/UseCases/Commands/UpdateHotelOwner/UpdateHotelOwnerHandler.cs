@@ -29,7 +29,7 @@ namespace HotelSevice.Application.UseCases.Commands.UpdateHotelOwner
 
             await _hotelRepository.UnitOfWork.SaveChangesAsync();
 
-            _searchPort.Index(hotel);
+            await _searchPort.IndexAsync(hotel);
 
             return Unit.Value;
         }

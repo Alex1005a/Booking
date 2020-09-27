@@ -27,7 +27,7 @@ namespace HotelSevice.Application.UseCases.Commands.UpdateHotelStatus
             hotel.AddDomainEvent(new UpdateHotelStatusEvent(hotel, request.Status));
             await _hotelRepository.UnitOfWork.SaveChangesAsync();
 
-            _searchPort.Index(hotel);
+            await _searchPort.IndexAsync(hotel);
 
             await _mediator.FixDomainEventsAsync(hotel);
 

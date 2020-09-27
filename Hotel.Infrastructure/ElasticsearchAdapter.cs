@@ -29,6 +29,11 @@ namespace HotelSevice.Infrastructure
             client.IndexDocument(hotel);
         }
 
+        public async Task IndexAsync(Hotel hotel)
+        {
+            await client.IndexDocumentAsync(hotel);
+        }
+
         public async Task<Hotel> GetByIdAsync(string id)
         {
             var response = await client.GetAsync<Hotel>(id);

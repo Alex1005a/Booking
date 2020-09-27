@@ -34,7 +34,7 @@ namespace HotelSevice.Application.UseCases.Commands.CreateHotel
             var hotel = _hotelRepository.Add(hotelAggregate);
             await _hotelRepository.UnitOfWork.SaveChangesAsync();
 
-            _searchPort.Index(hotel);
+            await _searchPort.IndexAsync(hotel);
 
             await _mediator.Publish(new CreateHotelEvent
             {

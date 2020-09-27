@@ -7,6 +7,7 @@ namespace HotelSevice.Application
     public interface ISearchPort
     {
         void Index(Hotel hotel);
+        Task IndexAsync(Hotel hotel);
         Task<Hotel> GetByIdAsync(string id);
         Task<IEnumerable<Hotel>> SearchHotelByName(string name, int page);
     }
