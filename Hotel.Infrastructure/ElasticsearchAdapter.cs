@@ -17,6 +17,13 @@ namespace HotelSevice.Infrastructure
                                                      .DefaultIndex("hotels")
                                                      );
 
+        private Hotel SetHotelId(Hotel hotel, string id)
+        {
+            PropertyInfo propertyInfo = hotel.GetType().GetProperty("Id");
+            propertyInfo.SetValue(hotel, Convert.ChangeType(id, propertyInfo.PropertyType), null);
+            return hotel;
+        }
+
         public void Index(Hotel hotel)
         {
             client.IndexDocument(hotel);
@@ -25,7 +32,7 @@ namespace HotelSevice.Infrastructure
         public async Task<Hotel> GetByIdAsync(string id)
         {
             var response = await client.GetAsync<Hotel>(id);
-            return response.Source;
+            return SetHotelId(response.Source, response.Id);
         }
 
         public async Task<IReadOnlyCollection<Hotel>> SearchHotelByName(string name, int page)
@@ -48,9 +55,7 @@ namespace HotelSevice.Infrastructure
 
             return result.Hits.Select(h =>
             {
-                PropertyInfo propertyInfo = h.Source.GetType().GetProperty("Id");
-                propertyInfo.SetValue(h.Source, Convert.ChangeType(h.Id, propertyInfo.PropertyType), null);
-                return h.Source;
+                return SetHotelId(h.Source, h.Id);
             }).ToList().AsReadOnly();
         }
     }
