@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HotelSevice.Application.UseCases.Queries.SearchHotelByName
 {
-    public class SearchHotelByNameHandler : IRequestHandler<SearchHotelByName, IReadOnlyCollection<Hotel>>
+    public class SearchHotelByNameHandler : IRequestHandler<SearchHotelByName, IEnumerable<Hotel>>
     {
         private readonly ISearchPort _searchPort;
 
@@ -17,7 +17,7 @@ namespace HotelSevice.Application.UseCases.Queries.SearchHotelByName
             _searchPort = searchPort;
         }
 
-        public async Task<IReadOnlyCollection<Hotel>> Handle(SearchHotelByName request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Hotel>> Handle(SearchHotelByName request, CancellationToken cancellationToken)
         {
             return await _searchPort.SearchHotelByName(request.Name, request.Page);
         }

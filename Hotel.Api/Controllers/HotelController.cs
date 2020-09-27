@@ -30,7 +30,7 @@ namespace HotelSevice.Api.Controllers
         }
 
         [HttpGet("searchByName")]
-        public async Task<IReadOnlyCollection<Hotel>> Get([FromQuery] string name, [FromQuery] int page = 0)
+        public async Task<IEnumerable<Hotel>> Get([FromQuery] string name, [FromQuery] int page = 0)
         {
             return await _mediator.Send(new SearchHotelByName(name, page));
         }

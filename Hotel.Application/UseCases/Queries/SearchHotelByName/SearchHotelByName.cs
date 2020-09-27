@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HotelSevice.Application.UseCases.Queries.SearchHotelByName
 {
-    public class SearchHotelByName : IRequest<IReadOnlyCollection<Hotel>>
+    public class SearchHotelByName : IRequest<IEnumerable<Hotel>>
     {
         public string Name { get; set; }
 

@@ -8,6 +8,6 @@ namespace HotelSevice.Application
     {
         void Index(Hotel hotel);
         Task<Hotel> GetByIdAsync(string id);
-        Task<IReadOnlyCollection<Hotel>> SearchHotelByName(string name, int page);
+        Task<IEnumerable<Hotel>> SearchHotelByName(string name, int page);
     }
 }

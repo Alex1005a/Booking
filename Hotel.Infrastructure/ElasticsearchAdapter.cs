@@ -35,7 +35,7 @@ namespace HotelSevice.Infrastructure
             return SetHotelId(response.Source, response.Id);
         }
 
-        public async Task<IReadOnlyCollection<Hotel>> SearchHotelByName(string name, int page)
+        public async Task<IEnumerable<Hotel>> SearchHotelByName(string name, int page)
         {
             int pageSize = 3;
             int levenshteinDistance = 6;
@@ -56,7 +56,7 @@ namespace HotelSevice.Infrastructure
             return result.Hits.Select(h =>
             {
                 return SetHotelId(h.Source, h.Id);
-            }).ToList().AsReadOnly();
+            });
         }
     }
 }
