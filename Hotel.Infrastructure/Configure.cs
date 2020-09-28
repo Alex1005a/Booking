@@ -1,5 +1,6 @@
 ﻿using HotelSevice.Application;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
+using HotelSevice.Infrastructure.Services;
 using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
@@ -31,6 +32,7 @@ namespace HotelSevice.Infrastructure
                     .SetSerializer(new GuidSerializer(BsonType.String));
             });
 
+            services.AddTransient<IIdempotencyService, IdempotencyService>();
             services.AddTransient<IHotelRepository, HotelRepository>();
             services.AddTransient(typeof(ISearchPort), typeof(ElasticsearchAdapter));
         }

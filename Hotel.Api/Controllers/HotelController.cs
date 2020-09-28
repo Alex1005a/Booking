@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HotelSevice.Api.Infrastructure.Filters;
 using HotelSevice.Application.UseCases.Commands.CreateHotel;
 using HotelSevice.Application.UseCases.Queries.GetHotelById;
 using HotelSevice.Application.UseCases.Queries.SearchHotelByName;
@@ -36,6 +37,7 @@ namespace HotelSevice.Api.Controllers
         }
 
         [HttpPost]
+        [ServiceFilter(typeof(IdempotencyFilter))]
         public async Task<string> Post([FromBody] CreateHotel createHotel)
         {
             return await _mediator.Send(createHotel);
