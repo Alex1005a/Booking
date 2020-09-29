@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using HotelSevice.Application;
 using HotelSevice.Infrastructure;
 using HotelSevice.Api.Infrastructure.Filters;
+using HotelSevice.Api.Services;
 
 namespace HotelSevice.Api
 {
@@ -36,7 +37,9 @@ namespace HotelSevice.Api
             */
             services.AddApplication();
             services.AddInfrastructure();
+
             services.AddScoped<IdempotencyFilter>();
+            services.AddTransient<IIdempotencyService, IdempotencyService>();
 
             services.AddControllers()
                 .AddNewtonsoftJson();

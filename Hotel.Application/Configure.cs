@@ -28,6 +28,7 @@ namespace HotelSevice.Application
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipe<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
         }
     }
 

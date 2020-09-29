@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Distributed;
-using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Caching.Distributed;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace HotelSevice.Infrastructure.Services
+namespace HotelSevice.Api.Services
 {
     public class IdempotencyService : IIdempotencyService
     {
