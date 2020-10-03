@@ -23,14 +23,14 @@ namespace HotelSevice.UnitTesting.Application
         [Fact]
         public Task Test_fluent_validator()
         {
-            IPipelineBehavior<CreateHotel, string> pipeline = new ValidationPipe<CreateHotel, string>(new List<IValidator<CreateHotel>> { new CreateHotelValidator() });
-
-            var fakeCmd = new CreateHotel { Name = "ww"};
-            var cltToken = new System.Threading.CancellationToken();
+            var validator = new CreateHotelValidator();
+            string nameTwoLength = "ww";
+            var fakeCmd = new CreateHotel { Name = nameTwoLength, Description = "description" };
             //Act
-            var del = new RequestHandlerDelegate<string>(() => Task.FromResult(Guid.Empty.ToString()));
 
-            Assert.ThrowsAsync<ValidationException>(async () => await pipeline.Handle(fakeCmd, cltToken, del));
+            var result = validator.Validate(fakeCmd);
+
+            Assert.True(result.Errors.Any());
 
             return Task.CompletedTask;
         }

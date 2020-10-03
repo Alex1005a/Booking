@@ -1,4 +1,5 @@
-﻿using HotelSevice.Application;
+﻿using FluentValidation;
+using HotelSevice.Application;
 using HotelSevice.Application.Pipelines;
 using HotelSevice.Application.UseCases.Queries.GetHotelById;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
@@ -9,6 +10,8 @@ using Microsoft.Extensions.Options;
 using Moq;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -72,6 +75,18 @@ namespace HotelSevice.UnitTesting.Application
             var cacheValue = JsonConvert.DeserializeObject<Hotel>(cacheString);
             //Assert
             Assert.True(res.Name == cacheValue.Name);
+        }
+
+        [Fact]
+        public async Task Test_command_validate()
+        {
+            var validator = new GetHotelByIdValidator();
+            var fakeCmd = new GetHotelById(Guid.Empty.ToString() + " ");
+            //Act
+
+            var result = validator.Validate(fakeCmd);
+
+            Assert.True(result.Errors.Any());
         }
     }
 }
