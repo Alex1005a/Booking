@@ -16,7 +16,7 @@ namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
         [RegularExpression(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$", ErrorMessage = "Not correct a phone number")]
         public string PhoneNumber { get; private set; }
 
-        public bool? Approved { get; private set; }
+        public bool? Confirmed { get; private set; }
 
         public string[] Tags { get; private set; }
 
@@ -52,9 +52,15 @@ namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
                 HotelOwner = hotelOwner;
             }
         }
-        public void SetStatus(bool approved)
+
+        public void Confirm()
         {
-            Approved = approved;
+            Confirmed = true;
+        }
+
+        public void Reject()
+        {
+            Confirmed = false;
         }
     }
 }

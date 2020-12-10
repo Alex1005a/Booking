@@ -5,9 +5,9 @@ using System.Text;
 
 namespace HotelSevice.Application.UseCases.Commands.UpdateHotelStatus
 {
-    public class UpdateHotelStatusValidator : AbstractValidator<UpdateHotelStatus>
+    public class ConfirmHotelValidator : AbstractValidator<ConfirmHotel>
     {
-        public UpdateHotelStatusValidator()
+        public ConfirmHotelValidator()
         {
             RuleFor(s => s.HotelId)
                 .NotEmpty();

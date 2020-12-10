@@ -7,17 +7,15 @@ using System.Text;
 
 namespace HotelSevice.Application.UseCases.Commands.UpdateHotelStatus
 {
-    public class UpdateHotelStatus : IRequest, ICacheRemove
+    public class ConfirmHotel : IRequest, ICacheRemove
     {
         public string[] CacheKeys => new string[] { new GetHotelById(HotelId).CacheKey };
 
         public string HotelId { get; set; }
-        public bool Status { get; set; }
 
-        public UpdateHotelStatus(string hotelId, bool status)
+        public ConfirmHotel(string hotelId)
         {
             HotelId = hotelId;
-            Status = status;
         }
     }
 }
