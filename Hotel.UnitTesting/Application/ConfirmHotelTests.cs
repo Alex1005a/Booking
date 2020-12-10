@@ -1,5 +1,5 @@
 ﻿using HotelSevice.Application;
-using HotelSevice.Application.UseCases.Commands.UpdateHotelStatus;
+using HotelSevice.Application.UseCases.Commands.ConfirmHotel;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using HotelSevice.Infrastructure;
 using MediatR;
@@ -12,7 +12,7 @@ using Xunit;
 
 namespace HotelSevice.UnitTesting.Application
 {
-    public class UpdateHotelStatusTests
+    public class ConfirmHotelTests
     {
         [Fact]
         public async Task Update_hotel_status_test()
@@ -37,14 +37,14 @@ namespace HotelSevice.UnitTesting.Application
             var searchMock = new Mock<ISearchPort>();
 
             //Act
-            UpdateHotelStatus update = new UpdateHotelStatus(hotel1.Id, approved);
-            UpdateHotelStatusHandler handler = new UpdateHotelStatusHandler(repository, mediator.Object, searchMock.Object);
+            ConfirmHotel update = new ConfirmHotel(hotel1.Id);
+            ConfirmHotelHandler handler = new ConfirmHotelHandler(repository, mediator.Object, searchMock.Object);
 
             await handler.Handle(update, cltToken);
 
             var result = await repository.GetAsync(hotel1.Id);
             //Assert
-            Assert.True(result.Approved == approved);
+            Assert.True(result.Confirmed == approved);
         }
     }
 }
