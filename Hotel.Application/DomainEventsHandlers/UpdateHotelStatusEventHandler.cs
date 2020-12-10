@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace HotelSevice.Application.DomainEventsHandlers
 {
-    public class ConfirmHotelEventHandler : INotificationHandler<ConfirmHotelEvent>
+    public class UpdateHotelStatusEventHandler : INotificationHandler<UpdateHotelStatusEvent>
     {
         private readonly IPublishEndpoint _publishEndpoint;
 
-        public ConfirmHotelEventHandler(IPublishEndpoint publishEndpoint)
+        public UpdateHotelStatusEventHandler(IPublishEndpoint publishEndpoint)
         {
             _publishEndpoint = publishEndpoint;           
         }
 
-        public Task Handle(ConfirmHotelEvent notification, CancellationToken cancellationToken)
+        public Task Handle(UpdateHotelStatusEvent notification, CancellationToken cancellationToken)
         {            
             _publishEndpoint.Publish(notification);
 

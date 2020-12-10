@@ -6,14 +6,15 @@ using System.Text;
 
 namespace HotelSevice.Application.DomainEvents
 {
-    public class ConfirmHotelEvent : INotification
+    public class UpdateHotelStatusEvent : INotification
     {
         public Hotel Hotel { get; set; }
         public bool Status { get; set; }
 
-        public ConfirmHotelEvent(Hotel hotel)
+        public UpdateHotelStatusEvent(Hotel hotel, bool status)
         {
             Hotel = hotel;
+            Status = status;
         }
     }
 }
