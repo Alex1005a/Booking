@@ -18,7 +18,6 @@ namespace HotelSevice.UnitTesting.Application
         public async Task Update_hotel_status_test()
         {
             Guid ownerId = Guid.NewGuid();
-            bool approved = true;
             var mediator = new Mock<IMediator>();
             IHotelRepository repository = new FakeRepository();
 
@@ -27,7 +26,7 @@ namespace HotelSevice.UnitTesting.Application
             Hotel hotel = new Hotel(
                 "Hotel",
                 "desc",
-                "+020 111 94546 333",
+                new PhoneNumber("+020 111 94546 333"),
                 new Address(1, "street", "city", "state", "country"),
                 new HotelOwner(ownerId, "name", "+020 111 94546 333")
                 );
@@ -44,7 +43,7 @@ namespace HotelSevice.UnitTesting.Application
 
             var result = await repository.GetAsync(hotel1.Id);
             //Assert
-            Assert.True(result.Confirmed == approved);
+            Assert.True(result.Confirmed == true);
         }
     }
 }

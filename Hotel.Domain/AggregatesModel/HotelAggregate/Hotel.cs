@@ -13,8 +13,8 @@ namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
         public string Name { get; private set; }
 
         public string Description { get; private set; }
-        [RegularExpression(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$", ErrorMessage = "Not correct a phone number")]
-        public string PhoneNumber { get; private set; }
+
+        public PhoneNumber PhoneNumber { get; private set; }
 
         public bool? Confirmed { get; private set; }
 
@@ -28,16 +28,10 @@ namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
 
         private Hotel() { }
 
-        public Hotel(string name, string description, string phoneNumber, Address address, HotelOwner hotelOwner) 
+        public Hotel(string name, string description, PhoneNumber phoneNumber, Address address, HotelOwner hotelOwner) 
         {
             Name = name;
             Description = description;
-
-            Regex phoneNumpattern = new Regex(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$");
-            if (!phoneNumpattern.IsMatch(phoneNumber))
-            {
-                throw new HotelDomainException($"{phoneNumber} is not a phone number");
-            }
             PhoneNumber = phoneNumber;
             Address = address;
             HotelOwner = hotelOwner;

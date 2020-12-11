@@ -24,6 +24,8 @@ namespace HotelSevice.Infrastructure
                 .OwnsOne(p => p.HotelOwner);
             modelBuilder.Entity<Hotel>()
                 .OwnsOne(p => p.Address);
+            modelBuilder.Entity<Hotel>()
+                .OwnsOne(p => p.PhoneNumber);
             modelBuilder.Entity<Hotel>().Ignore(t => t.DomainEvents);
             modelBuilder.Entity<Hotel>().Property(p => p.Tags)
             .HasConversion(

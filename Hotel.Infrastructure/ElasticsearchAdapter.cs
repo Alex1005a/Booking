@@ -13,9 +13,25 @@ namespace HotelSevice.Infrastructure
     public class ElasticsearchAdapter : ISearchPort
     {
 
-        readonly ElasticClient client = new ElasticClient(new ConnectionSettings(new Uri("http://localhost:9200"))
-                                                     .DefaultIndex("hotels")
-                                                     );
+        readonly ElasticClient client = AddDefaultMappings(new ConnectionSettings(new Uri("http://localhost:9200"))
+                                                     .DefaultIndex("hotels"));
+
+
+        private static ElasticClient AddDefaultMappings(ConnectionSettings settings)
+        {
+            string indexName = "hotels";
+            settings.DefaultMappingFor<Hotel>(m => m
+                .Ignore(p => p.DomainEvents)
+            );
+
+            ElasticClient client = new ElasticClient(settings);
+
+            client.Indices.Create(indexName,
+                index => index.Map<Hotel>(x => x.AutoMap())
+            );
+
+            return client;
+        }
 
         private Hotel SetHotelId(Hotel hotel, string id)
         {

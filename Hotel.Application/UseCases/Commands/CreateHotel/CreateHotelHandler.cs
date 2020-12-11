@@ -27,7 +27,7 @@ namespace HotelSevice.Application.UseCases.Commands.CreateHotel
             Hotel hotelAggregate = new Hotel(
                 request.Name, 
                 request.Description, 
-                request.PhoneNumber, 
+                new PhoneNumber(request.PhoneNumber), 
                 request.Address,
                 request.HotelOwner);
 

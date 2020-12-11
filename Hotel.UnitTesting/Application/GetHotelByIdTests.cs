@@ -27,7 +27,7 @@ namespace HotelSevice.UnitTesting.Application
             Hotel hotel = new Hotel(
                 "Hotel",
                 "desc",
-                "+020 111 94546 333",
+                new PhoneNumber("+020 111 94546 333"),
                 new Address(1, "street", "city", "state", "country"),
                 new HotelOwner(Guid.NewGuid(), "name", "+020 111 94546 333")
                 );
@@ -52,7 +52,7 @@ namespace HotelSevice.UnitTesting.Application
             Hotel hotel = new Hotel(
                 "Hotel",
                 "desc",
-                "+020 111 94546 333",
+                new PhoneNumber("+020 111 94546 333"),
                 new Address(1, "street", "city", "state", "country"),
                 new HotelOwner(Guid.NewGuid(), "name", "+020 111 94546 333")
                 );
@@ -78,7 +78,7 @@ namespace HotelSevice.UnitTesting.Application
         }
 
         [Fact]
-        public async Task Test_command_validate()
+        public void Test_command_validate()
         {
             var validator = new GetHotelByIdValidator();
             var fakeCmd = new GetHotelById(Guid.Empty.ToString() + " ");

@@ -15,7 +15,7 @@ namespace HotelSevice.UnitTesting.Domain
             Assert.Throws<HotelDomainException>(() =>  new Hotel(
                 "Hotel",
                 "desc",
-                fakePhoneNumber,
+                new PhoneNumber(fakePhoneNumber),
                 new Address(1, "street", "city", "state", "country"),
                 new HotelOwner(Guid.NewGuid(), "name", "+020 111 94546 333")
                 ));           
