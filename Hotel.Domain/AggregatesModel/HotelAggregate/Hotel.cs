@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
 {
-    public class Hotel : Entity<string>, IAggregateRoot
+    public class Hotel : Entity<HotelId>, IAggregateRoot
     {
         public string Name { get; private set; }
 
@@ -28,8 +28,9 @@ namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
 
         private Hotel() { }
 
-        public Hotel(string name, string description, PhoneNumber phoneNumber, Address address, HotelOwner hotelOwner) 
+        public Hotel(HotelId id, string name, string description, PhoneNumber phoneNumber, Address address, HotelOwner hotelOwner) 
         {
+            Id = id;
             Name = name;
             Description = description;
             PhoneNumber = phoneNumber;

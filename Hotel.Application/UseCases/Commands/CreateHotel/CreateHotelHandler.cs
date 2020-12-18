@@ -25,6 +25,7 @@ namespace HotelSevice.Application.UseCases.Commands.CreateHotel
         public async Task<string> Handle(CreateHotel request, CancellationToken cancellationToken)
         {
             Hotel hotelAggregate = new Hotel(
+                HotelId.Generate(),
                 request.Name, 
                 request.Description, 
                 new PhoneNumber(request.PhoneNumber), 
@@ -41,7 +42,7 @@ namespace HotelSevice.Application.UseCases.Commands.CreateHotel
                 Hotel = hotel
             });
 
-            return hotel.Id;
+            return hotel.Id.Value;
         }
     }
 }

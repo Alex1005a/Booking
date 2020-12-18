@@ -21,7 +21,7 @@ namespace HotelSevice.Application.UseCases.Commands.ConfirmHotel
 
         public async Task<Unit> Handle(ConfirmHotel request, CancellationToken cancellationToken)
         {
-            var hotel = await _hotelRepository.GetAsync(request.HotelId);
+            var hotel = await _hotelRepository.GetAsync(new HotelId(request.HotelId));
 
             hotel.Confirm();
             hotel.AddDomainEvent(new ConfirmHotelEvent(hotel.Id));

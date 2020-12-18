@@ -41,6 +41,7 @@ namespace HotelSevice.UnitTesting.Application
             var harness = new InMemoryTestHarness();
 
             Hotel hotel = new Hotel(
+                HotelId.Generate(),
                "Hotel",
                "desc",
                new PhoneNumber("+020 111 94546 333"),

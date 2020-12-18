@@ -31,6 +31,7 @@ namespace HotelSevice.UnitTesting.Application
             var cltToken = new System.Threading.CancellationToken();
 
             Hotel hotel = new Hotel(
+                HotelId.Generate(),
                 "Hotel",
                 "desc",
                 new PhoneNumber("+020 111 94546 333"),
@@ -41,7 +42,7 @@ namespace HotelSevice.UnitTesting.Application
             var hotel1 = repository.Add(hotel);
 
             //Act
-            UpdateHotelOwner update = new UpdateHotelOwner(hotel1.Id, ownerId, "eman", "+020 111 94546 333");
+            UpdateHotelOwner update = new UpdateHotelOwner(hotel1.Id.Value, ownerId, "eman", "+020 111 94546 333");
             UpdateHotelOwnerHandler handler = new UpdateHotelOwnerHandler(repository, Mock.Object);
             
             await handler.Handle(update, cltToken);

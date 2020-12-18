@@ -13,6 +13,7 @@ namespace HotelSevice.UnitTesting.Domain
             string fakePhoneNumber = "not PhoneNumber";
             //Assert
             Assert.Throws<HotelDomainException>(() =>  new Hotel(
+                HotelId.Generate(),
                 "Hotel",
                 "desc",
                 new PhoneNumber(fakePhoneNumber),

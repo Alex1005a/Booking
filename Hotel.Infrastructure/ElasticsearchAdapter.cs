@@ -20,14 +20,14 @@ namespace HotelSevice.Infrastructure
         private static ElasticClient AddDefaultMappings(ConnectionSettings settings)
         {
             string indexName = "hotels";
-            settings.DefaultMappingFor<Hotel>(m => m
-                .Ignore(p => p.DomainEvents)
+            settings.DefaultMappingFor<HotelElastic>(m => m
+                .IdProperty(p => p.Id)
             );
 
             ElasticClient client = new ElasticClient(settings);
 
             client.Indices.Create(indexName,
-                index => index.Map<Hotel>(x => x.AutoMap())
+                index => index.Map<HotelElastic>(x => x.AutoMap())
             );
 
             return client;
@@ -36,24 +36,24 @@ namespace HotelSevice.Infrastructure
         private Hotel SetHotelId(Hotel hotel, string id)
         {
             PropertyInfo propertyInfo = hotel.GetType().GetProperty("Id");
-            propertyInfo.SetValue(hotel, Convert.ChangeType(id, propertyInfo.PropertyType), null);
+            propertyInfo.SetValue(hotel, Convert.ChangeType(new HotelId(id), propertyInfo.PropertyType), null);
             return hotel;
         }
 
         public void Index(Hotel hotel)
         {
-            client.IndexDocument(hotel);
+            client.IndexDocument(HotelElastic.ToHotelMongo(hotel));
         }
 
         public async Task IndexAsync(Hotel hotel)
         {
-            await client.IndexDocumentAsync(hotel);
+            await client.IndexDocumentAsync(HotelElastic.ToHotelMongo(hotel));
         }
 
-        public async Task<Hotel> GetByIdAsync(string id)
+        public async Task<Hotel> GetByIdAsync(HotelId id)
         {
-            var response = await client.GetAsync<Hotel>(id);
-            return SetHotelId(response.Source, response.Id);
+            var response = await client.GetAsync<HotelElastic>(id.Value);
+            return SetHotelId(response.Source.ToHotel(), response.Id);
         }
 
         public async Task<IEnumerable<Hotel>> SearchHotelByName(string name, int page)
@@ -61,14 +61,14 @@ namespace HotelSevice.Infrastructure
             int pageSize = 3;
             int levenshteinDistance = 6;
 
-            Func<QueryContainerDescriptor<Hotel>, QueryContainer> searchQuery =
+            Func<QueryContainerDescriptor<HotelElastic>, QueryContainer> searchQuery =
                 q => q.Match(m => m
                                .Field(f => f.Name)
                                .Query(name)
                                 .Fuzziness(Fuzziness.EditDistance(levenshteinDistance))
                              );
            
-            var result = await client.SearchAsync<Hotel>(descriptor => descriptor
+            var result = await client.SearchAsync<HotelElastic>(descriptor => descriptor
                                 .From(page)
                                 .Size(pageSize)
                                 .Query(searchQuery)
@@ -76,7 +76,7 @@ namespace HotelSevice.Infrastructure
 
             return result.Hits.Select(h =>
             {
-                return SetHotelId(h.Source, h.Id);
+                return SetHotelId(h.Source.ToHotel(), h.Id);
             });
         }
     }

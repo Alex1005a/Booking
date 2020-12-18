@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.SeedWork
@@ -54,6 +55,19 @@ namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.SeedWork
         public ValueObject GetCopy()
         {
             return this.MemberwiseClone() as ValueObject;
+        }
+
+        public static bool operator ==(ValueObject left, ValueObject right)
+        {
+            if (Object.Equals(left, null))
+                return (Object.Equals(right, null)) ? true : false;
+            else
+                return left.Equals(right);
+        }
+
+        public static bool operator !=(ValueObject left, ValueObject right)
+        {
+            return !(left == right);
         }
     }
 }

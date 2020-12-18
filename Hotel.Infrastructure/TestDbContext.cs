@@ -19,7 +19,9 @@ namespace HotelSevice.Infrastructure
         {
             modelBuilder.Entity<Hotel>()
                 .Property(p => p.Id)
-                .ValueGeneratedOnAdd();
+                .ValueGeneratedOnAdd().HasConversion(
+            v => v.Value,
+            v => new HotelId(v));
             modelBuilder.Entity<Hotel>()
                 .OwnsOne(p => p.HotelOwner);
             modelBuilder.Entity<Hotel>()

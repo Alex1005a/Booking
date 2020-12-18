@@ -25,6 +25,7 @@ namespace HotelSevice.UnitTesting.Application
             string id = Guid.NewGuid().ToString();
             var fakeCmd = new GetHotelById(id);
             Hotel hotel = new Hotel(
+                HotelId.Generate(),
                 "Hotel",
                 "desc",
                 new PhoneNumber("+020 111 94546 333"),
@@ -32,7 +33,7 @@ namespace HotelSevice.UnitTesting.Application
                 new HotelOwner(Guid.NewGuid(), "name", "+020 111 94546 333")
                 );
             var searchMock = new Mock<ISearchPort>();
-            searchMock.Setup(svc => svc.GetByIdAsync(id)).Returns(Task.FromResult(hotel));
+            searchMock.Setup(svc => svc.GetByIdAsync(new HotelId(id))).Returns(Task.FromResult(hotel));
             //Act
             var handler = new GetHotelByIdHandler(searchMock.Object);
             var cltToken = new System.Threading.CancellationToken();
@@ -50,6 +51,7 @@ namespace HotelSevice.UnitTesting.Application
             var fakeCmd = new GetHotelById(id);
 
             Hotel hotel = new Hotel(
+                HotelId.Generate(),
                 "Hotel",
                 "desc",
                 new PhoneNumber("+020 111 94546 333"),
@@ -59,7 +61,7 @@ namespace HotelSevice.UnitTesting.Application
 
 
             var searchMock = new Mock<ISearchPort>();
-            searchMock.Setup(svc => svc.GetByIdAsync(id)).Returns(Task.FromResult(hotel));
+            searchMock.Setup(svc => svc.GetByIdAsync(new HotelId(id))).Returns(Task.FromResult(hotel));
 
             var opts = Options.Create(new MemoryDistributedCacheOptions());
             IDistributedCache cache = new MemoryDistributedCache(opts);
@@ -74,7 +76,7 @@ namespace HotelSevice.UnitTesting.Application
             var cacheString = await cache.GetStringAsync(fakeCmd.CacheKey);
             var cacheValue = JsonConvert.DeserializeObject<Hotel>(cacheString);
             //Assert
-            Assert.True(res.Name == cacheValue.Name);
+            Assert.True(res == cacheValue);
         }
 
         [Fact]

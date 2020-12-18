@@ -12,6 +12,6 @@ namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
 
         void Update(Hotel hotel);
 
-        Task<Hotel> GetAsync(string hotelId);
+        Task<Hotel> GetAsync(HotelId hotelId);
     }
 }

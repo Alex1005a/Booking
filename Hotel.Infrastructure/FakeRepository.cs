@@ -25,7 +25,7 @@ namespace HotelSevice.Infrastructure
             return hotel;          
         }
 
-        public async Task<Hotel> GetAsync(string hotelId)
+        public async Task<Hotel> GetAsync(HotelId hotelId)
         {
             return await context.Hotels.FindAsync(hotelId);
         }

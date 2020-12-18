@@ -21,7 +21,7 @@ namespace HotelSevice.Application.UseCases.Commands.UpdateHotelOwner
 
         public async Task<Unit> Handle(UpdateHotelOwner request, CancellationToken cancellationToken)
         {
-            var hotel = await _hotelRepository.GetAsync(request.HotelId);
+            var hotel = await _hotelRepository.GetAsync(new HotelId(request.HotelId));
             HotelOwner hotelOwner = new HotelOwner(request.Id, request.Name, request.PhoneNumber);
 
             hotel.UpdateOwner(hotelOwner);

@@ -19,7 +19,7 @@ namespace HotelSevice.Application.UseCases.Queries.GetHotelById
         }
         public async Task<Hotel> Handle(GetHotelById request, CancellationToken cancellationToken)
         {      
-            return await _searchPort.GetByIdAsync(request.Id);
+            return await _searchPort.GetByIdAsync(new HotelId(request.Id));
         }
     }
 }

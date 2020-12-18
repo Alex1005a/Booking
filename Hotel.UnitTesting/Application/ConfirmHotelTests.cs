@@ -24,6 +24,7 @@ namespace HotelSevice.UnitTesting.Application
             var cltToken = new System.Threading.CancellationToken();
 
             Hotel hotel = new Hotel(
+                HotelId.Generate(),
                 "Hotel",
                 "desc",
                 new PhoneNumber("+020 111 94546 333"),
@@ -36,7 +37,7 @@ namespace HotelSevice.UnitTesting.Application
             var searchMock = new Mock<ISearchPort>();
 
             //Act
-            ConfirmHotel update = new ConfirmHotel(hotel1.Id);
+            ConfirmHotel update = new ConfirmHotel(hotel1.Id.Value);
             ConfirmHotelHandler handler = new ConfirmHotelHandler(repository, mediator.Object, searchMock.Object);
 
             await handler.Handle(update, cltToken);

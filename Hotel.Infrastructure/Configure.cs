@@ -13,6 +13,7 @@ namespace HotelSevice.Infrastructure
     {
         public static void AddInfrastructure(this IServiceCollection services)
         {
+            /*
             BsonClassMap.RegisterClassMap<Entity<string>>(cm =>
             {
                 cm.SetIsRootClass(true);
@@ -20,7 +21,8 @@ namespace HotelSevice.Infrastructure
                     .SetIdGenerator(StringObjectIdGenerator.Instance)
                     .SetSerializer(new StringSerializer(BsonType.ObjectId));
             });
-            
+            */
+
             BsonClassMap.RegisterClassMap<HotelOwner>(cm =>
             {
                 cm.AutoMap();
