@@ -8,11 +8,11 @@ namespace HotelSevice.Application.DomainEvents
 {
     public class ConfirmHotelEvent : INotification
     {
-        public Hotel Hotel { get; set; }
+        public string HotelId { get; set; }
 
-        public ConfirmHotelEvent(Hotel hotel)
+        public ConfirmHotelEvent(string hotelId)
         {
-            Hotel = hotel;
+            HotelId = hotelId;
         }
     }
 }

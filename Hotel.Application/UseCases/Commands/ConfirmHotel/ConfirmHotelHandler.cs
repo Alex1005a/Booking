@@ -24,7 +24,7 @@ namespace HotelSevice.Application.UseCases.Commands.ConfirmHotel
             var hotel = await _hotelRepository.GetAsync(request.HotelId);
 
             hotel.Confirm();
-            hotel.AddDomainEvent(new ConfirmHotelEvent(hotel));
+            hotel.AddDomainEvent(new ConfirmHotelEvent(hotel.Id));
             await _hotelRepository.UnitOfWork.SaveChangesAsync();
 
             await _searchPort.IndexAsync(hotel);
