@@ -28,7 +28,7 @@ namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
 
         private Hotel() { }
 
-        public Hotel(HotelId id, string name, string description, PhoneNumber phoneNumber, Address address, HotelOwner hotelOwner) 
+        public Hotel(HotelId id, string name, string description, PhoneNumber phoneNumber, DateTime createdTime, Address address, HotelOwner hotelOwner) 
         {
             Id = id;
             Name = name;
@@ -37,7 +37,7 @@ namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
             Address = address;
             HotelOwner = hotelOwner;
 
-            CreatedTime = DateTime.Now;
+            CreatedTime = createdTime;
         }
 
         public void UpdateOwner(HotelOwner hotelOwner)

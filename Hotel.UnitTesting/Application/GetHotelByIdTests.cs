@@ -29,6 +29,7 @@ namespace HotelSevice.UnitTesting.Application
                 "Hotel",
                 "desc",
                 new PhoneNumber("+020 111 94546 333"),
+                DateTime.Now,
                 new Address(1, "street", "city", "state", "country"),
                 new HotelOwner(Guid.NewGuid(), "name", "+020 111 94546 333")
                 );
@@ -55,6 +56,7 @@ namespace HotelSevice.UnitTesting.Application
                 "Hotel",
                 "desc",
                 new PhoneNumber("+020 111 94546 333"),
+                DateTime.Now,
                 new Address(1, "street", "city", "state", "country"),
                 new HotelOwner(Guid.NewGuid(), "name", "+020 111 94546 333")
                 );
@@ -77,6 +79,7 @@ namespace HotelSevice.UnitTesting.Application
             var cacheValue = JsonConvert.DeserializeObject<Hotel>(cacheString);
             //Assert
             Assert.True(res == cacheValue);
+            Assert.Equal(res, cacheValue);
         }
 
         [Fact]

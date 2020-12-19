@@ -29,6 +29,7 @@ namespace HotelSevice.Application.UseCases.Commands.CreateHotel
                 request.Name, 
                 request.Description, 
                 new PhoneNumber(request.PhoneNumber), 
+                DateTime.Now,
                 request.Address,
                 request.HotelOwner);
 

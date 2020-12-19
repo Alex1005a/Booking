@@ -17,9 +17,17 @@ namespace HotelSevice.UnitTesting.Domain
                 "Hotel",
                 "desc",
                 new PhoneNumber(fakePhoneNumber),
+                DateTime.Now,
                 new Address(1, "street", "city", "state", "country"),
                 new HotelOwner(Guid.NewGuid(), "name", "+020 111 94546 333")
                 ));           
+        }
+
+        [Fact]
+        public void Hotel_id_equeal_test()
+        {
+            Assert.False(HotelId.Generate() == HotelId.Generate());
+            Assert.True(new HotelId(Guid.Empty.ToString()) == new HotelId(Guid.Empty.ToString()));
         }
     }
 }

@@ -45,6 +45,7 @@ namespace HotelSevice.UnitTesting.Application
                "Hotel",
                "desc",
                new PhoneNumber("+020 111 94546 333"),
+               DateTime.Now,
                new Address(1, "street", "city", "state", "country"),
                new HotelOwner(Guid.Empty, "name", "+020 111 94546 333")
                );
