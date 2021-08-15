@@ -24,7 +24,7 @@ namespace HotelSevice.Application.UseCases.Commands.UpdateHotelOwner
             var hotel = await _hotelRepository.GetAsync(new HotelId(request.HotelId));
             HotelOwner hotelOwner = new HotelOwner(request.Id, request.Name, request.PhoneNumber);
 
-            hotel.UpdateOwner(hotelOwner);
+            hotel.TryChangeOwner(hotelOwner);
             _hotelRepository.Update(hotel);
 
             await _hotelRepository.UnitOfWork.SaveChangesAsync();

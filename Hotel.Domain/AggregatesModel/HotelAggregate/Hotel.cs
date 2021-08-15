@@ -40,7 +40,7 @@ namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
             CreatedTime = createdTime;
         }
 
-        public void UpdateOwner(HotelOwner hotelOwner)
+        public void TryChangeOwner(HotelOwner hotelOwner)
         {
             if(HotelOwner.Id == hotelOwner.Id)
             {
