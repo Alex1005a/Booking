@@ -2,10 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace HotelSevice.Infrastructure
+namespace HotelSevice.UnitTesting
 {
     public class TestDbContext : DbContext, IUnitOfWork
     {

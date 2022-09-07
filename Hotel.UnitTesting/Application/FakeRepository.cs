@@ -1,12 +1,7 @@
 ﻿using HotelSevice.Domain.AggregatesModel.HotelAggregate;
+using HotelSevice.UnitTesting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HotelSevice.Infrastructure

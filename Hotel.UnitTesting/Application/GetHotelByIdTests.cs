@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using HotelSevice.Application;
+﻿using HotelSevice.Application;
 using HotelSevice.Application.Pipelines;
 using HotelSevice.Application.UseCases.Queries.GetHotelById;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
@@ -10,7 +9,6 @@ using Microsoft.Extensions.Options;
 using Moq;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;

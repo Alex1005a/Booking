@@ -1,7 +1,6 @@
 ﻿using HotelSevice.Application.Pipelines;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
-using System.Runtime.Serialization;
 
 namespace HotelSevice.Application.UseCases.Queries.GetHotelById
 {

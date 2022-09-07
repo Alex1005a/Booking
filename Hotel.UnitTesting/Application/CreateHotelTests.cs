@@ -1,18 +1,10 @@
-﻿using FluentValidation;
-using HotelSevice.Application;
-using HotelSevice.Application.DomainEvents;
+﻿using HotelSevice.Application.DomainEvents;
 using HotelSevice.Application.DomainEventsHandlers;
-using HotelSevice.Application.Pipelines;
 using HotelSevice.Application.UseCases.Commands.CreateHotel;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
-using HotelSevice.Infrastructure;
 using MassTransit.Testing;
-using MediatR;
-using Moq;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 

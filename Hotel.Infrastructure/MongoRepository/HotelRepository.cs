@@ -1,11 +1,7 @@
 ﻿using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using HotelSevice.Infrastructure.MongoRepository;
 using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HotelSevice.Infrastructure

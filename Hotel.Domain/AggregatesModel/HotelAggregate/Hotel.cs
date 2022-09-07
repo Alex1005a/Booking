@@ -1,10 +1,5 @@
-﻿using HotelSevice.Domain.AggregatesModel.Exeptions;
-using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
+﻿using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
 {

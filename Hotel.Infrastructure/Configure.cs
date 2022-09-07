@@ -1,10 +1,8 @@
 ﻿using HotelSevice.Application;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
-using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Bson.Serialization.Serializers;
 
 namespace HotelSevice.Infrastructure

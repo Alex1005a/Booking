@@ -2,8 +2,6 @@
 using HotelSevice.Application.UseCases.Queries.GetHotelById;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HotelSevice.Application.UseCases.Commands.UpdateHotelOwner
 {

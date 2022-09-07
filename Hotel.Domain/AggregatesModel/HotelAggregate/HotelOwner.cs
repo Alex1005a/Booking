@@ -1,7 +1,6 @@
 ﻿using Microsoft.eShopOnContainers.Services.Ordering.Domain.SeedWork;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace HotelSevice.Domain.AggregatesModel.HotelAggregate
 {

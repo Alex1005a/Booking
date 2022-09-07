@@ -2,7 +2,6 @@
 using HotelSevice.Application.Pipelines;
 using HotelSevice.Application.UseCases.Commands.UpdateHotelOwner;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
-using HotelSevice.Infrastructure;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Caching.Distributed;
@@ -10,8 +9,6 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 

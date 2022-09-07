@@ -1,12 +1,9 @@
 ﻿using HotelSevice.Application;
 using HotelSevice.Application.UseCases.Commands.ConfirmHotel;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
-using HotelSevice.Infrastructure;
 using MediatR;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 

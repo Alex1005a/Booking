@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using HotelSevice.Api.Infrastructure.Filters;
 using HotelSevice.Application.UseCases.Commands.CreateHotel;
@@ -8,7 +6,6 @@ using HotelSevice.Application.UseCases.Queries.GetHotelById;
 using HotelSevice.Application.UseCases.Queries.SearchHotelByName;
 using HotelSevice.Domain.AggregatesModel.HotelAggregate;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelSevice.Api.Controllers

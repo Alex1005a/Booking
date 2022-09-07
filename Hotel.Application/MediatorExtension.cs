@@ -1,10 +1,6 @@
 ﻿using MediatR;
 using Microsoft.eShopOnContainers.Services.Ordering.Domain.Seedwork;
 using Microsoft.eShopOnContainers.Services.Ordering.Domain.SeedWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HotelSevice.Application
